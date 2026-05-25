@@ -5,6 +5,32 @@ const CB_KEY = 'sanova_consent';
 const nav = document.getElementById('nav');
 if (nav) window.addEventListener('scroll', () => nav.classList.toggle('sc', window.scrollY > 60));
 
+// Hamburger menu
+const ham = document.getElementById('n-ham');
+const mob = document.getElementById('n-mob');
+if (ham && mob) {
+  ham.addEventListener('click', e => {
+    e.stopPropagation();
+    ham.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    ham.classList.remove('open');
+    mob.classList.remove('open');
+  }));
+  document.addEventListener('click', e => {
+    if (!nav.contains(e.target) && !mob.contains(e.target)) {
+      ham.classList.remove('open');
+      mob.classList.remove('open');
+    }
+  });
+  // Auto-mark active link in mobile nav
+  const page = location.pathname.split('/').pop() || 'index.html';
+  mob.querySelectorAll('a').forEach(a => {
+    if (a.getAttribute('href') === page) a.classList.add('active');
+  });
+}
+
 // Scroll reveal
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {

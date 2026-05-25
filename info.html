@@ -68,8 +68,18 @@
   .info-grid{grid-template-columns:1fr}
   .remgrid3{grid-template-columns:1fr 1fr}
   .cta-band-inner{flex-direction:column;text-align:center}
+  .info-page{padding:4.5rem 0 5rem}
+  .rem-section,.faq-section{padding:4.5rem 0}
 }
-@media(max-width:600px){.remgrid3{grid-template-columns:1fr}}
+@media(max-width:600px){
+  .remgrid3{grid-template-columns:1fr}
+  .icard-head{flex-direction:column;gap:.85rem}
+  .icard-rows{gap:.4rem}
+  .cta-band-btns{flex-direction:column;width:100%}
+  .cta-band-btns a{width:100%;justify-content:center}
+  .info-page{padding:3.5rem 0 4rem}
+  .faq-q span{font-size:.9rem}
+}
 </style>
 </head>
 <body>
@@ -97,9 +107,18 @@
     <li><a href="index.html">Start</a></li>
     <li><a href="leistungen.html">Leistungen</a></li>
     <li><a href="info.html" class="active">Info</a></li>
+    <li><a href="karriere.html">Karriere</a></li>
     <li><a href="kontakt.html" class="n-cta">Kontakt</a></li>
   </ul>
+  <button class="n-ham" id="n-ham" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
 </nav>
+<div class="n-mob" id="n-mob">
+  <a href="index.html">Start</a>
+  <a href="leistungen.html">Leistungen</a>
+  <a href="info.html">Info</a>
+  <a href="karriere.html">Karriere</a>
+  <a href="kontakt.html">Kontakt anfragen</a>
+</div>
 
 <div class="page-hero">
   <div class="ctr ph-inner">

@@ -214,13 +214,25 @@ footer{background:#1a2424;padding:4rem 0 2rem;color:rgba(255,255,255,.62)}
   .hvisual{display:none}
   .sgrid,.psteps,.remgrid{grid-template-columns:1fr 1fr}
   .usp-grid{grid-template-columns:1fr 1fr}
-  nav,.ctr,.usp-strip{padding-left:2rem;padding-right:2rem}
+  .usp-strip{padding:2rem}
   .hbg-construct{-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.3) 40%,black 70%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.3) 40%,black 70%)}
   .team-img{height:360px}
+  .hinner{padding:4rem 2rem 6rem}
+  #leistungen,#mikroskop,#warum,#ablauf,#kontakt{padding:5rem 0}
 }
 @media(max-width:600px){
   .sgrid,.psteps,.usp-grid,.frow,.ftop,.remgrid{grid-template-columns:1fr}
   .hbg-construct{display:none}
+  .hinner{padding:3.5rem 1.25rem 5rem}
+  .usp-strip{padding:1.75rem 1.25rem}
+  h1.hh{font-size:2rem}
+  .hstats{gap:1.25rem}
+  .hact{flex-direction:column}
+  .hact a{width:100%;justify-content:center}
+  .psteps::before{display:none}
+  #leistungen,#mikroskop,#warum,#ablauf,#kontakt{padding:4rem 0}
+  .clayout{gap:3rem}
+  .sh{margin-bottom:2.5rem}
 }
 </style>
 </head>
@@ -250,9 +262,18 @@ footer{background:#1a2424;padding:4rem 0 2rem;color:rgba(255,255,255,.62)}
     <li><a href="index.html">Start</a></li>
     <li><a href="leistungen.html">Leistungen</a></li>
     <li><a href="info.html">Info</a></li>
+    <li><a href="karriere.html">Karriere</a></li>
     <li><a href="kontakt.html" class="n-cta">Kontakt</a></li>
   </ul>
+  <button class="n-ham" id="n-ham" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
 </nav>
+<div class="n-mob" id="n-mob">
+  <a href="index.html">Start</a>
+  <a href="leistungen.html">Leistungen</a>
+  <a href="info.html">Info</a>
+  <a href="karriere.html">Karriere</a>
+  <a href="kontakt.html">Kontakt anfragen</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">

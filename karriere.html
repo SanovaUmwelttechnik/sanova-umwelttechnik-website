@@ -66,9 +66,22 @@
 .appl-step div p{font-size:.875rem;color:var(--tl);margin:0}
 .appl-step div strong{color:var(--g600);font-size:.9rem}
 
+.job-cols{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 @media(max-width:900px){
-  .init-grid,.sub-grid,.appl-layout{grid-template-columns:1fr}
+  .init-grid,.sub-grid,.appl-layout,.job-cols{grid-template-columns:1fr}
   .job-meta{flex-direction:column;gap:.6rem}
+  .job-head{padding:1.75rem}
+  .job-body{padding:1.75rem}
+  .karr-page{padding:5rem 0}
+  .init-section,.sub-section,.appl-section{padding:4.5rem 0}
+}
+@media(max-width:600px){
+  .job-head{padding:1.5rem 1.25rem}
+  .job-body{padding:1.5rem 1.25rem}
+  .job-actions{flex-direction:column}
+  .job-actions a{width:100%;justify-content:center}
+  .sub-cta a{width:100%;justify-content:center}
+  .init-card{padding:1.5rem}
 }
 </style>
 </head>
@@ -97,9 +110,18 @@
     <li><a href="index.html">Start</a></li>
     <li><a href="leistungen.html">Leistungen</a></li>
     <li><a href="info.html">Info</a></li>
+    <li><a href="karriere.html" class="active">Karriere</a></li>
     <li><a href="kontakt.html" class="n-cta">Kontakt</a></li>
   </ul>
+  <button class="n-ham" id="n-ham" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
 </nav>
+<div class="n-mob" id="n-mob">
+  <a href="index.html">Start</a>
+  <a href="leistungen.html">Leistungen</a>
+  <a href="info.html">Info</a>
+  <a href="karriere.html">Karriere</a>
+  <a href="kontakt.html">Kontakt anfragen</a>
+</div>
 
 <!-- HERO -->
 <div class="page-hero">
@@ -141,7 +163,7 @@
         </div>
       </div>
       <div class="job-body">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+        <div class="job-cols">
           <div>
             <h3>Ihre Aufgaben</h3>
             <ul>

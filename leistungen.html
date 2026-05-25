@@ -50,12 +50,21 @@
 .cta-band-btns{display:flex;gap:1rem;flex-wrap:wrap;flex-shrink:0}
 
 @media(max-width:900px){
-  .svc-layout,.svc-layout.rev{grid-template-columns:1fr;direction:ltr}
+  .svc-layout,.svc-layout.rev{grid-template-columns:1fr;direction:ltr;gap:2.5rem}
+  .svc-img-wrap{height:280px}
   .psteps{grid-template-columns:1fr 1fr}
   .psteps::before{display:none}
   .cta-band-inner{flex-direction:column;text-align:center}
+  .svc-section{padding:4rem 0}
+  .proc-strip{padding:4rem 0}
 }
-@media(max-width:600px){.psteps{grid-template-columns:1fr}}
+@media(max-width:600px){
+  .psteps{grid-template-columns:1fr}
+  .svc-img-wrap{height:230px}
+  .cta-band-btns{flex-direction:column;width:100%}
+  .cta-band-btns a{width:100%;justify-content:center}
+  .svc-section{padding:3rem 0}
+}
 </style>
 </head>
 <body>
@@ -83,9 +92,18 @@
     <li><a href="index.html">Start</a></li>
     <li><a href="leistungen.html" class="active">Leistungen</a></li>
     <li><a href="info.html">Info</a></li>
+    <li><a href="karriere.html">Karriere</a></li>
     <li><a href="kontakt.html" class="n-cta">Kontakt</a></li>
   </ul>
+  <button class="n-ham" id="n-ham" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
 </nav>
+<div class="n-mob" id="n-mob">
+  <a href="index.html">Start</a>
+  <a href="leistungen.html">Leistungen</a>
+  <a href="info.html">Info</a>
+  <a href="karriere.html">Karriere</a>
+  <a href="kontakt.html">Kontakt anfragen</a>
+</div>
 
 <div class="page-hero">
   <div class="ctr ph-inner">
