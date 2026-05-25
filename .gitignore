@@ -1,0 +1,12 @@
+# Claude Code intern
+.agents/
+.claude/
+.memory/
+skills-lock.json
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# macOS
+.DS_Store

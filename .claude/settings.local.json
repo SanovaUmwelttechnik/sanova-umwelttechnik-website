@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "PowerShell(Get-ExecutionPolicy -List)",
-      "Bash(dir \"c:\\\\Users\\\\doell\\\\OneDrive - Sanova Umwelttechnik\\\\Sanova Umwelttechnik\\\\Marketing\\\\Website\\\\Bilder\" /b)",
-      "PowerShell(gh auth status)"
-    ]
-  }
-}
