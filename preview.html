@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanova Umwelttechnik – Schadstoffsanierung | Vorschau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --g900: #1c2020;
+  --g800: #2c3030;
+  --g700: #424848;
+  --g600: #666666;
+  --g500: #7a7a7a;
+  --teal: #5F9D9C;
+  --teal-l: #79b7b6;
+  --teal-xl: #a0d0cf;
+  --teal-dim: rgba(95,157,156,0.13);
+  --bg: #f6f8f8;
+  --bg-alt: #edf3f2;
+  --white: #ffffff;
+  --border: #d0dcdb;
+  --text: #222222;
+  --tm: #444444;
+  --tl: #666666;
+  --shadow: 0 4px 24px rgba(102,102,102,.09);
+  --shadow-lg: 0 12px 48px rgba(102,102,102,.15);
+  --r: 6px;
+  --rl: 16px;
+  --tr: .3s cubic-bezier(.4,0,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Aptos','DM Sans',system-ui,sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;line-height:1.75;-webkit-font-smoothing:antialiased}
+
+/* ── NAV ──────────────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 4rem;height:72px;display:flex;align-items:center;justify-content:space-between;background:rgba(44,48,48,.96);backdrop-filter:blur(10px);box-shadow:0 2px 16px rgba(0,0,0,.18);transition:background var(--tr),box-shadow var(--tr)}
+nav.sc{background:#fff;box-shadow:0 2px 30px rgba(0,0,0,.09)}
+.lp-g{fill:#666666}
+.lp-t{fill:#5F9D9C}
+.n-logo-bg{background:rgba(255,255,255,.94);border-radius:6px;padding:5px 9px;display:flex;align-items:center;transition:background var(--tr),padding var(--tr),box-shadow var(--tr);box-shadow:0 1px 6px rgba(0,0,0,.12)}
+nav.sc .n-logo-bg{background:transparent;padding:5px 0;box-shadow:none}
+.n-logo{display:flex;align-items:center;gap:.85rem;text-decoration:none}
+.n-logo-sym{display:block;flex-shrink:0}
+.n-logo-name{display:flex;flex-direction:column;line-height:1.15}
+.n-l1{font-size:1.05rem;font-weight:700;color:#fff;transition:color var(--tr);letter-spacing:.01em}
+.n-l2{font-size:.67rem;font-weight:400;color:rgba(255,255,255,.55);letter-spacing:.07em;text-transform:uppercase;transition:color var(--tr)}
+nav.sc .n-l1{color:#333}
+nav.sc .n-l2{color:#888}
+.nlinks{display:flex;align-items:center;gap:.2rem;list-style:none}
+.nlinks a{padding:.5rem 1rem;color:rgba(255,255,255,.78);font-size:.9rem;font-weight:500;letter-spacing:.03em;border-radius:var(--r);transition:all var(--tr);text-decoration:none}
+.nlinks a:hover{color:#fff;background:rgba(255,255,255,.1)}
+nav.sc .nlinks a{color:var(--g500)}
+nav.sc .nlinks a:hover{color:var(--g600);background:rgba(102,102,102,.07)}
+.n-cta{background:var(--teal) !important;color:#fff !important;font-weight:600 !important}
+.n-cta:hover{background:var(--teal-l) !important;transform:translateY(-1px)}
+nav.sc .n-cta{background:var(--teal) !important;color:#fff !important}
+
+/* ── HERO ─────────────────────────────────────────────── */
+#hero{min-height:100vh;background:linear-gradient(150deg,#1c2020 0%,#363d3a 55%,#2c3030 100%);position:relative;display:flex;align-items:center;overflow:hidden;padding-top:72px}
+#hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.11) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;opacity:.35}
+.hbg-construct{position:absolute;inset:0;pointer-events:none;-webkit-mask-image:linear-gradient(to right,transparent 28%,rgba(0,0,0,.5) 46%,black 62%);mask-image:linear-gradient(to right,transparent 28%,rgba(0,0,0,.5) 46%,black 62%)}
+.hbg-construct svg{position:absolute;inset:0;width:100%;height:100%}
+#hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 100%,100% 0,100% 100%)}
+.hglow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 50% 60% at 72% 45%,rgba(95,157,156,.11) 0%,transparent 70%)}
+.hinner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:5rem 4rem 8rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hbadge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(95,157,156,.15);border:1px solid rgba(95,157,156,.35);color:var(--teal-xl);padding:.35rem 1rem;border-radius:2rem;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.5rem}
+.hbadge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0}
+h1.hh{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:700;line-height:1.12;color:#fff;margin-bottom:1.25rem}
+h1.hh em{font-style:normal;color:var(--teal-xl);display:block}
+.hsub{color:rgba(255,255,255,.66);font-size:1.02rem;line-height:1.85;margin-bottom:2.25rem;max-width:500px;font-weight:300}
+.hact{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-p{display:inline-flex;align-items:center;gap:.5rem;background:var(--teal);color:#fff;padding:.9rem 2rem;border-radius:var(--r);font-weight:600;font-size:.95rem;text-decoration:none;transition:all var(--tr);border:2px solid var(--teal)}
+.btn-p:hover{background:var(--teal-l);border-color:var(--teal-l);transform:translateY(-2px);box-shadow:0 8px 25px rgba(95,157,156,.32)}
+.btn-s{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:rgba(255,255,255,.82);padding:.9rem 2rem;border-radius:var(--r);font-weight:500;font-size:.95rem;text-decoration:none;border:2px solid rgba(255,255,255,.25);transition:all var(--tr)}
+.btn-s:hover{border-color:rgba(255,255,255,.52);background:rgba(255,255,255,.06)}
+.hstats{display:flex;gap:2rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1)}
+.hsn{font-size:1.85rem;font-weight:700;color:var(--teal-xl);line-height:1}
+.hsl{font-size:.75rem;color:rgba(255,255,255,.46);text-transform:uppercase;letter-spacing:.07em;margin-top:.25rem}
+.hvisual{display:flex;flex-direction:column;gap:1rem}
+.hcard{background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.1);border-radius:var(--rl);padding:1.5rem;backdrop-filter:blur(4px);transition:transform var(--tr)}
+.hcard:hover{transform:translateX(-4px)}
+.hcard-ico{width:44px;height:44px;background:var(--teal);border-radius:var(--r);display:flex;align-items:center;justify-content:center;margin-bottom:.75rem}
+.hcard-ico svg{width:22px;height:22px;fill:#fff}
+.hcard h3{color:#fff;font-size:.95rem;font-weight:600;margin-bottom:.3rem}
+.hcard p{color:rgba(255,255,255,.5);font-size:.82rem;line-height:1.55}
+
+/* ── COMMON ───────────────────────────────────────────── */
+.ctr{max-width:1200px;margin:0 auto;padding:0 4rem}
+.sh{margin-bottom:3.5rem}
+.stag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:.75rem}
+.stitle{font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;line-height:1.22;color:var(--g600)}
+.sdesc{margin-top:1rem;font-size:1rem;color:var(--tl);max-width:560px;line-height:1.75}
+
+/* ── USP STRIP ────────────────────────────────────────── */
+.usp-strip{background:var(--g700);padding:2.75rem 4rem}
+.usp-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.usp-item{text-align:center}
+.usp-item strong{display:block;font-size:1.8rem;font-weight:700;color:var(--teal-xl);line-height:1}
+.usp-item p{color:rgba(255,255,255,.6);font-size:.82rem;margin-top:.35rem}
+
+/* ── SERVICES ─────────────────────────────────────────── */
+#leistungen{padding:7rem 0;background:var(--bg)}
+.sgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.scard{background:#fff;border-radius:var(--rl);overflow:hidden;transition:all var(--tr);box-shadow:0 2px 12px rgba(102,102,102,.07)}
+.scard:hover{box-shadow:var(--shadow-lg);transform:translateY(-5px)}
+.scard-head{padding:0;position:relative;height:180px;overflow:hidden;display:flex;align-items:flex-end}
+.scard-head-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s ease}
+.scard:hover .scard-head-img{transform:scale(1.04)}
+.scard-head-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(36,44,44,.25) 0%,rgba(36,44,44,.8) 100%)}
+.scard-head-content{position:relative;z-index:1;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:.875rem;width:100%}
+.scard-ico{width:44px;height:44px;background:rgba(95,157,156,.22);border:1px solid rgba(95,157,156,.45);border-radius:var(--r);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.scard-ico svg{width:22px;height:22px;fill:var(--teal-xl)}
+.scard-head h3{font-size:1.1rem;color:#fff;font-weight:700;margin-bottom:.15rem;line-height:1.2}
+.scard-norm{font-size:.73rem;color:rgba(255,255,255,.6);letter-spacing:.04em}
+.scard-body{padding:1.5rem}
+.scard-body p{color:var(--tl);font-size:.9rem;line-height:1.7;margin-bottom:1rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{background:rgba(95,157,156,.1);color:var(--g500);padding:.22rem .75rem;border-radius:2rem;font-size:.76rem;font-weight:500}
+
+/* ── REM / ERKENNUNGSMERKMALE ─────────────────────────── */
+#mikroskop{padding:6rem 0;background:#fff}
+.remgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:0}
+.remcard{background:var(--bg);border-radius:var(--rl);overflow:hidden;border:1px solid var(--border);transition:all var(--tr)}
+.remcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--teal)}
+.remcard-img{width:100%;height:185px;object-fit:cover;object-position:center;display:block;background:#1a1a1a}
+.remcard-body{padding:1.25rem 1.375rem 1.5rem}
+.remtag{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);background:rgba(95,157,156,.1);padding:.22rem .65rem;border-radius:2rem;margin-bottom:.65rem}
+.remcard-body h3{font-size:.98rem;font-weight:700;color:var(--g600);margin-bottom:.5rem}
+.remcard-body p{font-size:.845rem;color:var(--tl);line-height:1.65}
+.rem-note{margin-top:2.5rem;background:linear-gradient(135deg,rgba(95,157,156,.09),rgba(95,157,156,.04));border:1px solid rgba(95,157,156,.22);border-radius:var(--rl);padding:1.25rem 1.75rem;display:flex;align-items:flex-start;gap:1rem}
+.rem-note-ico{width:38px;height:38px;min-width:38px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;font-weight:700;flex-shrink:0}
+.rem-note p{font-size:.875rem;color:var(--tm);line-height:1.65}
+.rem-note strong{color:var(--teal);font-weight:600}
+
+/* ── WHY US ───────────────────────────────────────────── */
+#warum{padding:7rem 0;background:var(--bg-alt)}
+.wgrid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.team-wrap{position:relative;border-radius:var(--rl);overflow:hidden;box-shadow:var(--shadow-lg)}
+.team-img{width:100%;height:490px;object-fit:cover;object-position:center 30%;display:block;transition:transform .5s ease}
+.team-wrap:hover .team-img{transform:scale(1.04)}
+.team-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(36,44,44,.22) 0%,rgba(36,44,44,.78) 100%)}
+.team-cert{position:absolute;bottom:0;left:0;right:0;padding:1.75rem;z-index:1}
+.team-cert-title{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-xl);margin-bottom:.75rem}
+.team-cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:.3rem .75rem}
+.team-cert-grid span{color:rgba(255,255,255,.88);font-size:.8rem}
+.why-items{display:flex;flex-direction:column;gap:1.75rem}
+.why-item{display:flex;gap:1.25rem;align-items:flex-start}
+.why-ico{width:50px;height:50px;min-width:50px;background:rgba(95,157,156,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--teal);transition:background var(--tr)}
+.why-item:hover .why-ico{background:rgba(95,157,156,.2)}
+.why-item h3{font-size:1.02rem;font-weight:700;color:var(--g600);margin-bottom:.35rem}
+.why-item p{font-size:.875rem;color:var(--tl);line-height:1.65}
+
+/* ── PROCESS ──────────────────────────────────────────── */
+#ablauf{padding:7rem 0;background:var(--g800);position:relative;overflow:hidden}
+#ablauf::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:40px 40px;opacity:.4;pointer-events:none}
+#ablauf .stag{color:var(--teal-xl)}
+#ablauf .stitle{color:#fff}
+.psteps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative;margin-top:4rem}
+.psteps::before{content:'';position:absolute;top:27px;left:calc(12.5% + 27px);right:calc(12.5% + 27px);height:1px;background:linear-gradient(to right,rgba(95,157,156,.5),rgba(95,157,156,.1))}
+.pstep{text-align:center}
+.pnum{width:54px;height:54px;border-radius:50%;background:rgba(95,157,156,.14);border:1.5px solid rgba(95,157,156,.42);display:flex;align-items:center;justify-content:center;font-size:1.05rem;font-weight:700;color:var(--teal-xl);margin:0 auto 1.5rem}
+.ptitle{font-size:1rem;font-weight:700;color:#fff;margin-bottom:.75rem}
+.pdesc{font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.65}
+
+/* ── CONTACT ──────────────────────────────────────────── */
+#kontakt{padding:7rem 0;background:var(--bg)}
+.clayout{display:grid;grid-template-columns:1fr 1.3fr;gap:5rem;align-items:start}
+.ci h3{font-size:1.45rem;font-weight:700;color:var(--g600);margin-bottom:1rem}
+.ci p{font-size:.95rem;color:var(--tl);line-height:1.75;margin-bottom:2.5rem}
+.cdetails{display:flex;flex-direction:column;gap:1rem}
+.cdet{display:flex;align-items:center;gap:.875rem;font-size:.9rem;color:var(--text)}
+.cdico{width:40px;height:40px;min-width:40px;background:rgba(95,157,156,.12);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--teal)}
+.cdet a{color:var(--text);text-decoration:none}
+.cdet a:hover{color:var(--teal)}
+.cform{background:#fff;border-radius:20px;padding:2.5rem;box-shadow:0 6px 36px rgba(102,102,102,.12)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg{margin-bottom:1.25rem}
+.fg label{display:block;font-size:.82rem;font-weight:600;color:var(--tm);margin-bottom:.5rem;letter-spacing:.02em}
+.fg input,.fg select,.fg textarea{width:100%;padding:.85rem 1rem;border:1.5px solid var(--border);border-radius:var(--r);font-family:'Aptos','DM Sans',system-ui,sans-serif;font-size:.92rem;color:var(--text);background:var(--bg);transition:all var(--tr);outline:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--teal);background:#fff;box-shadow:0 0 0 3px rgba(95,157,156,.12)}
+.fg textarea{height:120px;resize:vertical}
+.fsub{width:100%;padding:1rem;background:var(--teal);color:#fff;border:none;border-radius:var(--r);font-family:'Aptos','DM Sans',system-ui,sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all var(--tr);letter-spacing:.02em;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.fsub:hover{background:var(--teal-l);transform:translateY(-2px);box-shadow:0 8px 20px rgba(95,157,156,.28)}
+
+/* ── FOOTER ───────────────────────────────────────────── */
+footer{background:#1a2424;padding:4rem 0 2rem;color:rgba(255,255,255,.62)}
+.ftop{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.fbrand-logo{margin-bottom:1.25rem}
+.fbrand p{font-size:.875rem;line-height:1.7;max-width:320px}
+.fcol h4{font-size:.75rem;font-weight:700;color:var(--teal-xl);text-transform:uppercase;letter-spacing:.12em;margin-bottom:1.25rem}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.fcol a{font-size:.875rem;color:rgba(255,255,255,.46);text-decoration:none;transition:color var(--tr)}
+.fcol a:hover{color:var(--teal-xl)}
+.fbot{padding-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.fbot p{font-size:.8rem}
+.fbot-links{display:flex;gap:1.5rem}
+.fbot-links a{font-size:.8rem;color:rgba(255,255,255,.36);text-decoration:none;transition:color var(--tr)}
+.fbot-links a:hover{color:var(--teal-xl)}
+
+/* ── REVEAL ───────────────────────────────────────────── */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.rv.vis{opacity:1;transform:translateY(0)}
+@keyframes fiu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fi1{animation:fiu .8s .05s ease both}
+.fi2{animation:fiu .8s .18s ease both}
+.fi3{animation:fiu .8s .3s ease both}
+.fi4{animation:fiu .8s .42s ease both}
+
+/* ── RESPONSIVE ───────────────────────────────────────── */
+@media(max-width:900px){
+  .hinner,.wgrid,.clayout{grid-template-columns:1fr}
+  .hvisual{display:none}
+  .sgrid,.psteps,.remgrid{grid-template-columns:1fr 1fr}
+  .usp-grid{grid-template-columns:1fr 1fr}
+  nav,.ctr,.usp-strip{padding-left:2rem;padding-right:2rem}
+  .hbg-construct{-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.3) 40%,black 70%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.3) 40%,black 70%)}
+  .team-img{height:360px}
+}
+@media(max-width:600px){
+  .sgrid,.psteps,.usp-grid,.frow,.ftop,.remgrid{grid-template-columns:1fr}
+  .hbg-construct{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="n-logo">
+    <div class="n-logo-bg">
+      <svg class="n-logo-sym" width="28" height="37" viewBox="0 0 622 823" xmlns="http://www.w3.org/2000/svg">
+        <path class="lp-g" d="M620 288 620 644 516 644 516 347.939Z" fill-rule="evenodd"/>
+        <path class="lp-g" d="M311.668 230.654 568.369 378.86 516.4 468.87 207.731 290.662Z" fill-rule="evenodd"/>
+        <path class="lp-g" d="M570.025 552.78 621.994 642.79 312.577 821.43 260.609 731.42Z" fill-rule="evenodd"/>
+        <path class="lp-g" d="M104.385 582.97 363.34 732.48 311.372 822.49 1.955 643.85 3.463 641.24Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M2 535 2 179 106 179 106 475.06Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M310.624 592.39 53.923 444.18 105.892 354.17 414.561 532.38Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M52.267 270.263 0.299 180.251 309.715 1.609 361.684 91.621Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M517.908 240.075 258.952 90.567 310.921 0.555 620.337 179.197 618.83 181.807Z" fill-rule="evenodd"/>
+      </svg>
+    </div>
+    <div class="n-logo-name">
+      <span class="n-l1">Sanova Umwelttechnik</span>
+      <span class="n-l2">Schadstoffsanierung</span>
+    </div>
+  </a>
+  <ul class="nlinks">
+    <li><a href="index.html">Start</a></li>
+    <li><a href="leistungen.html">Leistungen</a></li>
+    <li><a href="info.html">Info</a></li>
+    <li><a href="kontakt.html" class="n-cta">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hbg-construct" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="rgba(160,208,207,.14)" fill="none" stroke-width="1.2">
+        <line x1="720" y1="0" x2="720" y2="900"/>
+        <line x1="940" y1="0" x2="940" y2="900"/>
+        <line x1="1160" y1="0" x2="1160" y2="900"/>
+        <line x1="1380" y1="0" x2="1380" y2="900"/>
+      </g>
+      <g stroke="rgba(160,208,207,.14)" fill="none" stroke-width="1.2">
+        <line x1="695" y1="80"  x2="1440" y2="80"/>
+        <line x1="695" y1="280" x2="1440" y2="280"/>
+        <line x1="695" y1="480" x2="1440" y2="480"/>
+        <line x1="695" y1="680" x2="1440" y2="680"/>
+        <line x1="695" y1="880" x2="1440" y2="880"/>
+      </g>
+      <g fill="rgba(95,157,156,.038)" stroke="rgba(95,157,156,.09)" stroke-width="0.6">
+        <rect x="730" y="92"  width="198" height="176" rx="1"/>
+        <rect x="950" y="92"  width="198" height="176" rx="1"/>
+        <rect x="1170" y="92" width="198" height="176" rx="1"/>
+        <rect x="730" y="292"  width="198" height="176" rx="1"/>
+        <rect x="950" y="292"  width="198" height="176" rx="1"/>
+        <rect x="1170" y="292" width="198" height="176" rx="1"/>
+        <rect x="730" y="492"  width="198" height="176" rx="1"/>
+        <rect x="950" y="492"  width="198" height="176" rx="1"/>
+        <rect x="1170" y="492" width="198" height="176" rx="1"/>
+        <rect x="730" y="692"  width="198" height="176" rx="1"/>
+        <rect x="950" y="692"  width="198" height="176" rx="1"/>
+        <rect x="1170" y="692" width="198" height="176" rx="1"/>
+      </g>
+      <g stroke="rgba(95,157,156,.11)" fill="none" stroke-width="1.3">
+        <line x1="720" y1="80"  x2="940" y2="280"/>
+        <line x1="940" y1="80"  x2="720" y2="280"/>
+        <line x1="940" y1="280" x2="1160" y2="480"/>
+        <line x1="1160" y1="280" x2="940" y2="480"/>
+        <line x1="1160" y1="480" x2="1380" y2="680"/>
+        <line x1="1380" y1="480" x2="1160" y2="680"/>
+        <line x1="720" y1="480" x2="940" y2="680"/>
+        <line x1="940" y1="480" x2="720" y2="680"/>
+      </g>
+      <g fill="rgba(95,157,156,.28)">
+        <circle cx="720"  cy="80"  r="3.5"/><circle cx="940"  cy="80"  r="3.5"/><circle cx="1160" cy="80"  r="3.5"/><circle cx="1380" cy="80"  r="3.5"/>
+        <circle cx="720"  cy="280" r="3.5"/><circle cx="940"  cy="280" r="3.5"/><circle cx="1160" cy="280" r="3.5"/><circle cx="1380" cy="280" r="3.5"/>
+        <circle cx="720"  cy="480" r="3.5"/><circle cx="940"  cy="480" r="3.5"/><circle cx="1160" cy="480" r="3.5"/><circle cx="1380" cy="480" r="3.5"/>
+        <circle cx="720"  cy="680" r="3.5"/><circle cx="940"  cy="680" r="3.5"/><circle cx="1160" cy="680" r="3.5"/><circle cx="1380" cy="680" r="3.5"/>
+      </g>
+      <g stroke="rgba(95,157,156,.22)" fill="none" stroke-width="0.8">
+        <line x1="678" y1="80"  x2="678" y2="280"/><line x1="670" y1="80"  x2="686" y2="80"/><line x1="670" y1="280" x2="686" y2="280"/>
+        <line x1="678" y1="280" x2="678" y2="480"/><line x1="670" y1="480" x2="686" y2="480"/>
+        <line x1="720"  y1="54" x2="940"  y2="54"/><line x1="720"  y1="46" x2="720"  y2="62"/><line x1="940"  y1="46" x2="940"  y2="62"/>
+        <line x1="940"  y1="54" x2="1160" y2="54"/><line x1="1160" y1="46" x2="1160" y2="62"/>
+        <line x1="1160" y1="54" x2="1380" y2="54"/><line x1="1380" y1="46" x2="1380" y2="62"/>
+      </g>
+      <g transform="translate(840,60) scale(0.75)" opacity="0.055" fill="#5F9D9C">
+        <path d="M620 288 620 644 516 644 516 347.939Z" fill-rule="evenodd"/>
+        <path d="M311.668 230.654 568.369 378.86 516.4 468.87 207.731 290.662Z" fill-rule="evenodd"/>
+        <path d="M570.025 552.78 621.994 642.79 312.577 821.43 260.609 731.42Z" fill-rule="evenodd"/>
+        <path d="M104.385 582.97 363.34 732.48 311.372 822.49 1.955 643.85 3.463 641.24Z" fill-rule="evenodd"/>
+        <path d="M2 535 2 179 106 179 106 475.06Z" fill-rule="evenodd"/>
+        <path d="M310.624 592.39 53.923 444.18 105.892 354.17 414.561 532.38Z" fill-rule="evenodd"/>
+        <path d="M52.267 270.263 0.299 180.251 309.715 1.609 361.684 91.621Z" fill-rule="evenodd"/>
+        <path d="M517.908 240.075 258.952 90.567 310.921 0.555 620.337 179.197 618.83 181.807Z" fill-rule="evenodd"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hglow"></div>
+  <div class="hinner">
+    <div>
+      <div class="hbadge fi1">Zertifiziert &amp; Zugelassen · TRGS 519 · TRGS 521</div>
+      <h1 class="hh fi2">Ihr kompetenter Partner<br>für <em>Gebäudeschadstoff&shy;sanierung</em></h1>
+      <p class="hsub fi3">Professionelle Sanierung von Asbest, KMF, PCB und PAK – sicher, gesetzeskonform und zuverlässig. Von kleinen Maßnahmen bis zu komplexen Großprojekten.</p>
+      <div class="hact fi4">
+        <a href="kontakt.html" class="btn-p">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Kostenlose Beratung
+        </a>
+        <a href="leistungen.html" class="btn-s">Unsere Leistungen</a>
+      </div>
+      <div class="hstats fi4">
+        <div><div class="hsn">TRGS</div><div class="hsl">Zertifiziert nach<br>519 &amp; 521</div></div>
+        <div><div class="hsn">100%</div><div class="hsl">Gesetzeskonforme<br>Entsorgung</div></div>
+        <div><div class="hsn">24h</div><div class="hsl">Reaktionszeit<br>garantiert</div></div>
+      </div>
+    </div>
+    <div class="hvisual fi3">
+      <div class="hcard">
+        <div class="hcard-ico"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div>
+        <h3>Zertifizierte Fachkompetenz</h3>
+        <p>Alle Arbeiten nach geltenden TRGS-Vorschriften und gesetzlichen Anforderungen.</p>
+      </div>
+      <div class="hcard">
+        <div class="hcard-ico"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+        <h3>Kostenlose Vor-Ort-Beratung</h3>
+        <p>Wir kommen zu Ihnen und analysieren die Situation direkt an Ihrem Objekt.</p>
+      </div>
+      <div class="hcard">
+        <div class="hcard-ico"><svg viewBox="0 0 24 24"><path d="M9 11H7v9h2v-9zm4 0h-2v9h2v-9zm4 0h-2v9h2v-9zm2.5-10.1L20 2H4l.5.9L3 5h18l-1.5-4.1zM21 6H3v2h18V6z"/></svg></div>
+        <h3>Vollständige Dokumentation</h3>
+        <p>Entsorgungsnachweise, Abschlussdokumentation und behördliche Nachweise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USP STRIP -->
+<div class="usp-strip">
+  <div class="usp-grid">
+    <div class="usp-item rv"><strong>Asbest</strong><p>TRGS 519 zertifiziert</p></div>
+    <div class="usp-item rv"><strong>KMF</strong><p>TRGS 521 zertifiziert</p></div>
+    <div class="usp-item rv"><strong>PCB &amp; PAK</strong><p>Fachgerechte Sanierung</p></div>
+    <div class="usp-item rv"><strong>Vor-Ort</strong><p>Kostenlose Erstberatung</p></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="leistungen">
+  <div class="ctr">
+    <div class="sh rv">
+      <div class="stag">Unsere Leistungen</div>
+      <h2 class="stitle">Gebäudeschadstoffsanierung<br>aus einer Hand</h2>
+      <p class="sdesc">Schadstoffe in Gebäuden sind oft unsichtbar – aber allgegenwärtig in älteren Bausubstanzen. Wir entfernen sie sicher, gesetzeskonform und vollständig.</p>
+    </div>
+    <div class="sgrid">
+
+      <!-- Asbestsanierung -->
+      <div class="scard rv">
+        <div class="scard-head">
+          <img class="scard-head-img" src="Bilder/Flex%201_edited.jpg" alt="Floorflex-Bodenbelag mit Asbest">
+          <div class="scard-head-overlay"></div>
+          <div class="scard-head-content">
+            <div class="scard-ico"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div>
+            <div><h3>Asbestsanierung</h3><div class="scard-norm">TRGS 519 · Zertifiziert</div></div>
+          </div>
+        </div>
+        <div class="scard-body">
+          <p>Fachgerechte Entfernung und Entsorgung asbesthaltiger Materialien nach TRGS 519 – sicher für Menschen und Umwelt.</p>
+          <div class="tags"><span class="tag">Floorflex-Platten</span><span class="tag">Cushion-Vinyl</span><span class="tag">Asbestzement (Eternit)</span><span class="tag">Asbesthaltige Kleber</span><span class="tag">BT-Verfahren</span></div>
+        </div>
+      </div>
+
+      <!-- KMF-Sanierung -->
+      <div class="scard rv">
+        <div class="scard-head">
+          <img class="scard-head-img" src="Bilder/IMG_3735.JPG" alt="KMF Deckendämmung in Gebäude" style="object-position:center 60%">
+          <div class="scard-head-overlay"></div>
+          <div class="scard-head-content">
+            <div class="scard-ico"><svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-8 2l3 5-3-2z"/></svg></div>
+            <div><h3>KMF-Sanierung</h3><div class="scard-norm">TRGS 521 · Zertifiziert</div></div>
+          </div>
+        </div>
+        <div class="scard-body">
+          <p>Professionelle Entfernung künstlicher Mineralfasern. Ältere KMF-Generationen gelten als potenziell krebserregend.</p>
+          <div class="tags"><span class="tag">Rohrleitungsdämmungen</span><span class="tag">Kellerdeckendämmungen</span><span class="tag">Trittschalldämmungen</span><span class="tag">Estrichunterlage</span></div>
+        </div>
+      </div>
+
+      <!-- PCB-Sanierung -->
+      <div class="scard rv">
+        <div class="scard-head">
+          <img class="scard-head-img" src="Bilder/PCB%203.JPG" alt="PCB-haltige Baumaterialien" style="object-position:center 40%">
+          <div class="scard-head-overlay"></div>
+          <div class="scard-head-content">
+            <div class="scard-ico"><svg viewBox="0 0 24 24"><path d="M19.07 4.93A10 10 0 1 0 4.93 19.07 10 10 0 0 0 19.07 4.93zM12 17l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg></div>
+            <div><h3>PCB-Sanierung</h3><div class="scard-norm">Polychlorierte Biphenyle</div></div>
+          </div>
+        </div>
+        <div class="scard-body">
+          <p>Sichere Beseitigung polychlorierter Biphenyle aus Baustoffen, Fugen und Beschichtungen. Umwelt- und gesundheitsschädlich.</p>
+          <div class="tags"><span class="tag">Dauerelastische Fugen</span><span class="tag">Farben &amp; Beschichtungen</span><span class="tag">Kondensatoren</span><span class="tag">Bauteilfugen</span></div>
+        </div>
+      </div>
+
+      <!-- PAK-Sanierung -->
+      <div class="scard rv">
+        <div class="scard-head">
+          <img class="scard-head-img" src="Bilder/IMG_3706.JPG" alt="PAK-haltiges Bitumenmaterial hinter Wand">
+          <div class="scard-head-overlay"></div>
+          <div class="scard-head-content">
+            <div class="scard-ico"><svg viewBox="0 0 24 24"><path d="M13 2.05V4.05C17.39 4.59 20.5 8.58 19.96 12.97C19.5 16.61 16.64 19.5 13 19.93V21.93C18.5 21.38 22.5 16.5 21.95 11C21.5 6.25 17.73 2.5 13 2.05M11 2.06C9.05 2.25 7.19 3 5.67 4.26L7.1 5.74C8.22 4.84 9.57 4.26 11 4.06V2.06M4.26 5.67C3 7.19 2.25 9.04 2.05 11H4.05C4.24 9.58 4.8 8.23 5.69 7.1L4.26 5.67M12 9A3 3 0 0 0 9 12A3 3 0 0 0 12 15A3 3 0 0 0 15 12A3 3 0 0 0 12 9Z"/></svg></div>
+            <div><h3>PAK-Sanierung</h3><div class="scard-norm">Polyzyklische Aromatische Kohlenwasserstoffe</div></div>
+          </div>
+        </div>
+        <div class="scard-body">
+          <p>Fachgerechte Entfernung von PAK aus Teerprodukten, Klebstoffen und Beschichtungen. Viele PAK sind nachweislich krebserregend.</p>
+          <div class="tags"><span class="tag">Klebstoff unter Parkett</span><span class="tag">Trennschichten unter Fliesen</span><span class="tag">Gussasphalt</span><span class="tag">Beschichtungen</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ERKENNUNGSMERKMALE / REM -->
+<section id="mikroskop">
+  <div class="ctr">
+    <div class="sh rv" style="text-align:center;max-width:680px;margin:0 auto 3rem">
+      <div class="stag">Erkennungsmerkmale</div>
+      <h2 class="stitle">Was das Auge nicht sieht</h2>
+      <p class="sdesc" style="margin:1rem auto 0">Asbest- und KMF-Fasern sind mit bloßem Auge unsichtbar – erst unter dem Rasterelektronenmikroskop wird ihre gefährliche Struktur sichtbar. Erkennen Sie, ob Ihr Gebäude betroffen sein könnte.</p>
+    </div>
+    <div class="remgrid">
+
+      <div class="remcard rv">
+        <img class="remcard-img" src="Bilder/REM/chrysotil-2_5f9d9c.png" alt="Chrysotil-Asbest unter dem Elektronenmikroskop">
+        <div class="remcard-body">
+          <span class="remtag">Weißasbest</span>
+          <h3>Chrysotil-Asbest</h3>
+          <p>Die häufigste Asbestart in Gebäuden der 1960–80er Jahre. Kommt vor in Fußbodenbelägen, Klebstoffen, Dachplatten und Putzen. Die feinen Fasern können tief in die Lunge eindringen.</p>
+        </div>
+      </div>
+
+      <div class="remcard rv">
+        <img class="remcard-img" src="Bilder/REM/amphibol-1_5f9d9c.png" alt="Amphibol-Asbest unter dem Elektronenmikroskop">
+        <div class="remcard-body">
+          <span class="remtag">Blau- / Braunasbest</span>
+          <h3>Amphibol-Asbest</h3>
+          <p>Besonders gefährliche Asbestart in Spritzputzen und Brandschutzmaterialien. Nadelförmige Fasern mit extrem langer Verweilzeit im Körpergewebe – gilt als stark krebserregend.</p>
+        </div>
+      </div>
+
+      <div class="remcard rv">
+        <img class="remcard-img" src="Bilder/KMF-2.png" alt="Künstliche Mineralfaser (KMF) unter dem Elektronenmikroskop" style="object-fit:contain;background:#111;padding:.5rem">
+        <div class="remcard-body">
+          <span class="remtag">KMF / Mineralwolle</span>
+          <h3>Künstliche Mineralfasern</h3>
+          <p>Alte KMF-Generationen (vor 1996) sind biopersistent und damit gesundheitsschädlich. Typisch in alten Kellerdecken-, Rohr- und Trittschalldämmungen.</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="rem-note rv">
+      <div class="rem-note-ico">i</div>
+      <p><strong>Erkennen Sie Ihr Gebäude wieder?</strong> Wenn Ihr Objekt vor 1990 erbaut wurde und Sie diese Materialien vermuten, zögern Sie nicht – eine kostenlose Erstberatung schafft Klarheit. Wir kommen zu Ihnen und bewerten die Situation vor Ort.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="warum">
+  <div class="ctr">
+    <div class="wgrid">
+
+      <!-- Worker photo with cert overlay -->
+      <div class="team-wrap rv">
+        <img class="team-img" src="Bilder/IMG_4322_edited.png" alt="Sanova Umwelttechnik Team bei der Schadstoffsanierung">
+        <div class="team-overlay"></div>
+        <div class="team-cert">
+          <div class="team-cert-title">Zertifizierungen &amp; Qualifikationen</div>
+          <div class="team-cert-grid">
+            <span>✓ TRGS 519 – Asbest</span>
+            <span>✓ TRGS 521 – KMF</span>
+            <span>✓ Entsorgungsnachweis</span>
+            <span>✓ Bundesweit tätig</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why items -->
+      <div>
+        <div class="sh rv">
+          <div class="stag">Warum Sanova Umwelttechnik</div>
+          <h2 class="stitle">Erfahrung trifft Verlässlichkeit</h2>
+          <p class="sdesc">Wir sind ein engagiertes Team mit einschlägiger Expertise – von kleinen Sanierungsmaßnahmen bis zu komplexen Großprojekten in ganz Deutschland.</p>
+        </div>
+        <div class="why-items">
+          <div class="why-item rv">
+            <div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+            <div><h3>Maßgeschneiderte Lösungen</h3><p>Jedes Sanierungsprojekt ist einzigartig. Wir entwickeln Lösungen, die flexibel an Ihre Anforderungen, Ihr Budget und Ihren Zeitplan angepasst sind.</p></div>
+          </div>
+          <div class="why-item rv">
+            <div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div><h3>Schnelle Reaktionszeit</h3><p>Wir melden uns innerhalb von 24 Stunden und koordinieren zeitnah einen Vor-Ort-Termin – kostenlos und unverbindlich.</p></div>
+          </div>
+          <div class="why-item rv">
+            <div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <div><h3>Vollständige Dokumentation</h3><p>Sie erhalten alle Entsorgungsnachweise, Abschlussdokumentationen und behördlichen Nachweise – vollständig und rechtssicher.</p></div>
+          </div>
+          <div class="why-item rv">
+            <div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+            <div><h3>Transparente Angebote</h3><p>Keine versteckten Kosten. Individuelles, detailliertes Angebot nach der Vor-Ort-Beratung – klar und nachvollziehbar.</p></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="ablauf">
+  <div class="ctr" style="position:relative;z-index:2">
+    <div class="sh rv" style="text-align:center;max-width:600px;margin:0 auto 0">
+      <div class="stag">Unser Ablauf</div>
+      <h2 class="stitle">Transparent. Strukturiert. Verlässlich.</h2>
+    </div>
+    <div class="psteps">
+      <div class="pstep rv"><div class="pnum">01</div><div class="ptitle">Kostenlose Vor-Ort-Beratung</div><p class="pdesc">Wir kommen zu Ihnen und analysieren die Situation direkt am Objekt – kostenlos und unverbindlich.</p></div>
+      <div class="pstep rv"><div class="pnum">02</div><div class="ptitle">Individuelles Angebot</div><p class="pdesc">Detailliertes, transparentes Angebot nach der Bestandsaufnahme. Keine versteckten Kosten.</p></div>
+      <div class="pstep rv"><div class="pnum">03</div><div class="ptitle">Fachgerechte Sanierung</div><p class="pdesc">Zertifiziertes Personal führt die Maßnahmen sicher durch – unter Einhaltung aller TRGS-Richtlinien.</p></div>
+      <div class="pstep rv"><div class="pnum">04</div><div class="ptitle">Dokumentation &amp; Nachweis</div><p class="pdesc">Entsorgungsnachweise, Abschlussdokumentation und alle behördlichen Nachweise – vollständig.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="kontakt">
+  <div class="ctr">
+    <div class="sh rv" style="text-align:center;max-width:600px;margin:0 auto 3.5rem">
+      <div class="stag">Jetzt anfragen</div>
+      <h2 class="stitle">Kostenlose Beratung anfordern</h2>
+      <p class="sdesc" style="margin:1rem auto 0">Wir melden uns innerhalb von 24 Stunden – unverbindlich und kostenlos.</p>
+    </div>
+    <div class="clayout">
+      <div class="ci rv">
+        <h3>Sprechen Sie uns an</h3>
+        <p>Ob kleines Sanierungsprojekt oder Großvorhaben – wir beraten Sie persönlich, ehrlich und kostenlos. Rufen Sie uns an oder nutzen Sie das Formular.</p>
+        <div class="cdetails">
+          <div class="cdet">
+            <div class="cdico"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+            <a href="tel:+4915209328685">+49 152 09328685</a>
+          </div>
+          <div class="cdet">
+            <div class="cdico"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+            <a href="mailto:info@sanova-umwelttechnik.de">info@sanova-umwelttechnik.de</a>
+          </div>
+          <div class="cdet">
+            <div class="cdico"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+            <span>Anne-Frank-Str. 32 · 64354 Reinheim</span>
+          </div>
+          <div class="cdet">
+            <div class="cdico"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+            <span>Mo–Fr: 07:00 – 18:00 Uhr</span>
+          </div>
+        </div>
+      </div>
+      <div class="cform rv">
+        <form action="https://formspree.io/f/xredarey" method="POST" novalidate>
+          <div class="frow">
+            <div class="fg"><label>Vorname *</label><input type="text" name="vorname" required placeholder="Max"></div>
+            <div class="fg"><label>Nachname *</label><input type="text" name="nachname" required placeholder="Mustermann"></div>
+          </div>
+          <div class="frow">
+            <div class="fg"><label>E-Mail *</label><input type="email" name="email" required placeholder="max@mustermann.de"></div>
+            <div class="fg"><label>Telefon</label><input type="tel" name="telefon" placeholder="+49 ..."></div>
+          </div>
+          <div class="fg"><label>Leistungsgebiet</label>
+            <select name="leistung">
+              <option value="">Bitte auswählen...</option>
+              <option>Asbestsanierung</option><option>KMF-Sanierung</option><option>PCB-Sanierung</option>
+              <option>PAK-Sanierung</option><option>Mehrere Schadstoffe</option><option>Unbekannt / Beratung gewünscht</option>
+            </select>
+          </div>
+          <div class="fg"><label>Ihre Nachricht *</label><textarea name="nachricht" required placeholder="Beschreiben Sie kurz Ihr Anliegen – z.B. Art des Gebäudes, Fläche, Dringlichkeit…"></textarea></div>
+          <button class="fsub" type="submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            Nachricht senden
+          </button>
+          <p style="font-size:.76rem;color:var(--tl);margin-top:.75rem">* Pflichtfelder · Ihre Daten werden nicht an Dritte weitergegeben.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ctr">
+    <div class="ftop">
+      <div class="fbrand">
+        <div class="fbrand-logo">
+          <div style="background:rgba(255,255,255,.95);border-radius:6px;padding:5px 10px;display:inline-flex;align-items:center;gap:.75rem;box-shadow:0 1px 8px rgba(0,0,0,.22)">
+            <svg width="28" height="37" viewBox="0 0 622 823" xmlns="http://www.w3.org/2000/svg">
+              <path d="M620 288 620 644 516 644 516 347.939Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M311.668 230.654 568.369 378.86 516.4 468.87 207.731 290.662Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M570.025 552.78 621.994 642.79 312.577 821.43 260.609 731.42Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M104.385 582.97 363.34 732.48 311.372 822.49 1.955 643.85 3.463 641.24Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M2 535 2 179 106 179 106 475.06Z" fill="#5F9D9C" fill-rule="evenodd"/>
+              <path d="M310.624 592.39 53.923 444.18 105.892 354.17 414.561 532.38Z" fill="#5F9D9C" fill-rule="evenodd"/>
+              <path d="M52.267 270.263 0.299 180.251 309.715 1.609 361.684 91.621Z" fill="#5F9D9C" fill-rule="evenodd"/>
+              <path d="M517.908 240.075 258.952 90.567 310.921 0.555 620.337 179.197 618.83 181.807Z" fill="#5F9D9C" fill-rule="evenodd"/>
+            </svg>
+            <div style="display:flex;flex-direction:column;line-height:1.15">
+              <span style="font-size:.95rem;font-weight:700;color:#333;letter-spacing:.01em">Sanova Umwelttechnik</span>
+              <span style="font-size:.64rem;color:#888;text-transform:uppercase;letter-spacing:.07em">Schadstoffsanierung</span>
+            </div>
+          </div>
+        </div>
+        <p>Ihr zertifizierter Partner für professionelle Gebäudeschadstoffsanierung. Sicherheit, Qualität und gesetzeskonforme Lösungen aus einer Hand.</p>
+      </div>
+      <div class="fcol"><h4>Navigation</h4><ul><li><a href="index.html">Start</a></li><li><a href="leistungen.html">Leistungen</a></li><li><a href="info.html">Info &amp; Schadstoffe</a></li><li><a href="kontakt.html">Kontakt</a></li></ul></div>
+      <div class="fcol"><h4>Rechtliches</h4><ul><li><a href="impressum.html">Impressum</a></li><li><a href="datenschutz.html">Datenschutz</a></li><li><a href="cookies.html">Cookie-Richtlinie</a></li></ul></div>
+    </div>
+    <div class="fbot">
+      <p>© 2025 Sanova Umwelttechnik · Yannick Döll · Reinheim</p>
+      <div class="fbot-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="cookies.html">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('sc', window.scrollY > 60));
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const sibs = [...e.target.parentElement.querySelectorAll('.rv:not(.vis)')];
+      const i = sibs.indexOf(e.target);
+      setTimeout(() => e.target.classList.add('vis'), i * 80);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
