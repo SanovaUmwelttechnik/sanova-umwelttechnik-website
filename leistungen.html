@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leistungen – Sanova Umwelttechnik | Schadstoffsanierung</title>
+<meta name="description" content="Alle Leistungen von Sanova Umwelttechnik: Asbestsanierung (TRGS 519), KMF-Sanierung (TRGS 521), PCB-, PAK-Sanierung, Schadstoffgutachten und Abbrucharbeiten.">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Service detail sections */
+.svc-section{padding:5.5rem 0}
+.svc-section:nth-child(even){background:#fff}
+.svc-section:nth-child(odd){background:var(--bg)}
+.svc-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.svc-layout.rev{direction:rtl}
+.svc-layout.rev > *{direction:ltr}
+.svc-img-wrap{border-radius:var(--rl);overflow:hidden;box-shadow:var(--shadow-lg);position:relative;height:380px}
+.svc-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.svc-img-wrap:hover img{transform:scale(1.03)}
+.svc-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(36,44,44,.1) 0%,rgba(36,44,44,.55) 100%)}
+.svc-img-badge{position:absolute;bottom:1.5rem;left:1.5rem;background:var(--teal);color:#fff;padding:.4rem 1rem;border-radius:2rem;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.svc-content h2{font-size:clamp(1.6rem,2.8vw,2.1rem);font-weight:700;color:var(--g600);line-height:1.2;margin-bottom:1rem}
+.svc-content p{font-size:.93rem;color:var(--tl);line-height:1.82;margin-bottom:1.25rem}
+.svc-norm-badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--teal-dim);border:1px solid rgba(95,157,156,.25);color:var(--teal);padding:.3rem .85rem;border-radius:2rem;font-size:.74rem;font-weight:700;letter-spacing:.08em;margin-bottom:1rem}
+.svc-list{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.5rem}
+.svc-list li{display:flex;align-items:flex-start;gap:.65rem;font-size:.875rem;color:var(--tl);line-height:1.55}
+.svc-list li::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--teal);margin-top:.45rem;flex-shrink:0}
+
+/* No-photo placeholder */
+.svc-no-img{width:100%;height:380px;border-radius:var(--rl);background:linear-gradient(135deg,var(--bg-alt) 0%,var(--border) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;color:var(--g500)}
+.svc-no-img svg{width:64px;height:64px;opacity:.3}
+
+/* Process strip */
+.proc-strip{background:var(--g800);padding:5rem 0;position:relative;overflow:hidden}
+.proc-strip::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:40px 40px;opacity:.4}
+.proc-strip .stag{color:var(--teal-xl)}
+.proc-strip .stitle{color:#fff}
+.psteps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative;margin-top:4rem}
+.psteps::before{content:'';position:absolute;top:27px;left:calc(12.5% + 27px);right:calc(12.5% + 27px);height:1px;background:linear-gradient(to right,rgba(95,157,156,.5),rgba(95,157,156,.1))}
+.pstep{text-align:center}
+.pnum{width:54px;height:54px;border-radius:50%;background:rgba(95,157,156,.14);border:1.5px solid rgba(95,157,156,.42);display:flex;align-items:center;justify-content:center;font-size:1.05rem;font-weight:700;color:var(--teal-xl);margin:0 auto 1.5rem}
+.ptitle{font-size:1rem;font-weight:700;color:#fff;margin-bottom:.75rem}
+.pdesc{font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.65}
+
+/* CTA band */
+.cta-band{background:linear-gradient(135deg,rgba(95,157,156,.12) 0%,rgba(95,157,156,.05) 100%);border-top:1px solid rgba(95,157,156,.2);border-bottom:1px solid rgba(95,157,156,.2);padding:4rem 0}
+.cta-band-inner{display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap}
+.cta-band-inner h2{font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;color:var(--g600);line-height:1.25;max-width:540px}
+.cta-band-inner p{color:var(--tl);margin-top:.5rem;font-size:.93rem}
+.cta-band-btns{display:flex;gap:1rem;flex-wrap:wrap;flex-shrink:0}
+
+@media(max-width:900px){
+  .svc-layout,.svc-layout.rev{grid-template-columns:1fr;direction:ltr}
+  .psteps{grid-template-columns:1fr 1fr}
+  .psteps::before{display:none}
+  .cta-band-inner{flex-direction:column;text-align:center}
+}
+@media(max-width:600px){.psteps{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="n-logo">
+    <div class="n-logo-bg">
+      <svg class="n-logo-sym" width="28" height="37" viewBox="0 0 622 823" xmlns="http://www.w3.org/2000/svg">
+        <path class="lp-g" d="M620 288 620 644 516 644 516 347.939Z" fill-rule="evenodd"/>
+        <path class="lp-g" d="M311.668 230.654 568.369 378.86 516.4 468.87 207.731 290.662Z" fill-rule="evenodd"/>
+        <path class="lp-g" d="M570.025 552.78 621.994 642.79 312.577 821.43 260.609 731.42Z" fill-rule="evenodd"/>
+        <path class="lp-g" d="M104.385 582.97 363.34 732.48 311.372 822.49 1.955 643.85 3.463 641.24Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M2 535 2 179 106 179 106 475.06Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M310.624 592.39 53.923 444.18 105.892 354.17 414.561 532.38Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M52.267 270.263 0.299 180.251 309.715 1.609 361.684 91.621Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M517.908 240.075 258.952 90.567 310.921 0.555 620.337 179.197 618.83 181.807Z" fill-rule="evenodd"/>
+      </svg>
+    </div>
+    <div class="n-logo-name">
+      <span class="n-l1">Sanova Umwelttechnik</span>
+      <span class="n-l2">Schadstoffsanierung</span>
+    </div>
+  </a>
+  <ul class="nlinks">
+    <li><a href="index.html">Start</a></li>
+    <li><a href="leistungen.html" class="active">Leistungen</a></li>
+    <li><a href="info.html">Info</a></li>
+    <li><a href="kontakt.html" class="n-cta">Kontakt</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="ctr ph-inner">
+    <div class="stag">Unsere Leistungen</div>
+    <h1>Gebäudeschadstoffsanierung<br>aus einer Hand</h1>
+    <p>Von der Erstberatung bis zur abschließenden Dokumentation – wir begleiten Sie durch jeden Schritt.</p>
+  </div>
+</div>
+
+<!-- ASBESTSANIERUNG -->
+<section class="svc-section">
+  <div class="ctr">
+    <div class="svc-layout rv">
+      <div class="svc-img-wrap rv">
+        <img src="Bilder/Flex%201_edited.jpg" alt="Asbesthaltiger Floorflex-Bodenbelag">
+        <div class="svc-img-overlay"></div>
+        <div class="svc-img-badge">TRGS 519</div>
+      </div>
+      <div class="svc-content rv">
+        <div class="svc-norm-badge">Asbestsanierung</div>
+        <h2>Asbest sicher und gesetzeskonform entfernen</h2>
+        <p>Asbest wurde bis in die 1990er Jahre massenhaft in Gebäuden verbaut. Viele Eigentümer und Bauherren wissen nicht, dass ihre Immobilie betroffen ist. Wir identifizieren asbesthaltige Materialien, entwickeln ein Sanierungskonzept und führen die Entfernung nach TRGS 519 durch.</p>
+        <h3 style="font-size:.95rem;font-weight:700;color:var(--g600);margin-bottom:.65rem">Typische Fundorte</h3>
+        <ul class="svc-list">
+          <li>Floorflex- und Cushion-Vinyl-Bodenbeläge mit asbesthaltigem Kleber</li>
+          <li>Asbestzementplatten (Eternit) an Fassaden, Dächern und Wänden</li>
+          <li>Asbesthaltige Putze, Spachtelmassen und Dichtungen</li>
+          <li>Nachtspeicher-Heizkörper der älteren Generation</li>
+          <li>Brandschutz-Spritzputze (Sokalit, Limpet)</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">TRGS 519 zertifiziert</span>
+          <span class="tag">Entsorgungsnachweis</span>
+          <span class="tag">Freimessung</span>
+          <span class="tag">Behördliche Meldung</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KMF -->
+<section class="svc-section">
+  <div class="ctr">
+    <div class="svc-layout">
+      <div class="svc-content">
+        <div class="svc-norm-badge">KMF-Sanierung</div>
+        <h2>Künstliche Mineralfasern fachgerecht beseitigen</h2>
+        <p>Alte Generationen von Mineralwolle (vor 1996) gelten als biopersistent und stehen im Verdacht, krebserregend zu sein. Beim Rückbau oder Umbau von Gebäuden müssen diese Materialien nach TRGS 521 fachgerecht entfernt werden.</p>
+        <h3 style="font-size:.95rem;font-weight:700;color:var(--g600);margin-bottom:.65rem">Typische Fundorte</h3>
+        <ul class="svc-list">
+          <li>Kellerdeckendämmungen aus älterer Mineralwolle</li>
+          <li>Rohrleitungsdämmungen in Kellern und Technikräumen</li>
+          <li>Trittschalldämmungen und Estrichunterlagen</li>
+          <li>Fassadendämmplatten aus der Vor-1996-Generation</li>
+          <li>Lüftungskanal-Dämmungen in Gewerbebauten</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">TRGS 521 zertifiziert</span>
+          <span class="tag">Biopersistenz-Check</span>
+          <span class="tag">Schutzmaßnahmen Klasse 3</span>
+        </div>
+      </div>
+      <div class="svc-img-wrap">
+        <img src="Bilder/IMG_3735.JPG" alt="KMF-Deckendämmung" style="object-position:center 60%">
+        <div class="svc-img-overlay"></div>
+        <div class="svc-img-badge">TRGS 521</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PCB -->
+<section class="svc-section">
+  <div class="ctr">
+    <div class="svc-layout rv">
+      <div class="svc-img-wrap">
+        <img src="Bilder/PCB%203.JPG" alt="PCB-haltige Baufuge" style="object-position:center 40%">
+        <div class="svc-img-overlay"></div>
+        <div class="svc-img-badge">PCB</div>
+      </div>
+      <div class="svc-content">
+        <div class="svc-norm-badge">PCB-Sanierung</div>
+        <h2>Polychlorierte Biphenyle sicher beseitigen</h2>
+        <p>PCB ist ein hochtoxisches, umweltpersistentes Chlororganikum, das in den 1950–1980er Jahren weit verbreitet in Baumaterialien eingesetzt wurde. PCB-haltige Baustoffe müssen als Sonderabfall entsorgt werden.</p>
+        <h3 style="font-size:.95rem;font-weight:700;color:var(--g600);margin-bottom:.65rem">Typische Fundorte</h3>
+        <ul class="svc-list">
+          <li>Dauerelastische Fugenmassen an Fenstern, Decken und Fassaden</li>
+          <li>Farben und Beschichtungen in Schulen, Behörden und Industriebauten</li>
+          <li>Kondensatoren älterer elektrischer Anlagen</li>
+          <li>Bautenschutzmittel und Holzschutzimprägniermittel</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Raumluftmessung</span>
+          <span class="tag">Sonderabfall-Entsorgung</span>
+          <span class="tag">PCBAbfallV konform</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAK -->
+<section class="svc-section">
+  <div class="ctr">
+    <div class="svc-layout">
+      <div class="svc-content">
+        <div class="svc-norm-badge">PAK-Sanierung</div>
+        <h2>Polyzyklische aromatische Kohlenwasserstoffe entfernen</h2>
+        <p>PAK sind in vielen teer- und bitumenhaltigen Baustoffen enthalten und gelten als krebserregend. Bei der Entfernung müssen besondere Schutz- und Entsorgungsmaßnahmen eingehalten werden, da PAK hautresorptiv sind.</p>
+        <h3 style="font-size:.95rem;font-weight:700;color:var(--g600);margin-bottom:.65rem">Typische Fundorte</h3>
+        <ul class="svc-list">
+          <li>Schwarzer Kleber unter Parkett und PVC-Bodenbelägen (Teerkleber)</li>
+          <li>Trennschichten unter Fliesen in Feuchträumen</li>
+          <li>Gussasphaltestrich und Dachpappe älterer Bauweise</li>
+          <li>Korrosionsschutzbeschichtungen an Stahlbauteilen</li>
+          <li>Dachbahnen und Kellerwand-Abdichtungen</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Hautschutz-Schutzmaßnahmen</span>
+          <span class="tag">Sonderabfall</span>
+          <span class="tag">BG-konforme Entsorgung</span>
+        </div>
+      </div>
+      <div class="svc-img-wrap">
+        <img src="Bilder/IMG_3706.JPG" alt="PAK-haltiger Teerkleber hinter Wandverkleidung">
+        <div class="svc-img-overlay"></div>
+        <div class="svc-img-badge">PAK</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABLAUF -->
+<section class="proc-strip">
+  <div class="ctr" style="position:relative;z-index:2">
+    <div class="sh rv" style="text-align:center;max-width:600px;margin:0 auto 0">
+      <div class="stag">Unser Ablauf</div>
+      <h2 class="stitle">Transparent. Strukturiert. Verlässlich.</h2>
+    </div>
+    <div class="psteps">
+      <div class="pstep rv"><div class="pnum">01</div><div class="ptitle">Kostenlose Vor-Ort-Beratung</div><p class="pdesc">Wir kommen zu Ihnen – kostenlos und unverbindlich. Bestandsaufnahme und erste Einschätzung vor Ort.</p></div>
+      <div class="pstep rv"><div class="pnum">02</div><div class="ptitle">Individuelles Angebot</div><p class="pdesc">Detailliertes, transparentes Angebot nach der Bestandsaufnahme. Keine versteckten Kosten.</p></div>
+      <div class="pstep rv"><div class="pnum">03</div><div class="ptitle">Fachgerechte Sanierung</div><p class="pdesc">Zertifiziertes Personal führt die Maßnahmen sicher durch – unter Einhaltung aller TRGS-Richtlinien.</p></div>
+      <div class="pstep rv"><div class="pnum">04</div><div class="ptitle">Dokumentation &amp; Nachweis</div><p class="pdesc">Entsorgungsnachweise, Abschlussdokumentation und alle behördlichen Nachweise – vollständig und rechtssicher.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+  <div class="ctr">
+    <div class="cta-band-inner">
+      <div>
+        <h2>Betroffenes Gebäude?<br>Wir beraten Sie kostenlos.</h2>
+        <p>Erstkontakt, Vor-Ort-Termin und erste Einschätzung – immer kostenlos und unverbindlich.</p>
+      </div>
+      <div class="cta-band-btns">
+        <a href="kontakt.html" class="btn-p">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Beratung anfragen
+        </a>
+        <a href="tel:+4915209328685" class="btn-outline">+49 152 09328685</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ctr">
+    <div class="ftop">
+      <div class="fbrand">
+        <div class="fbrand-logo">
+          <div style="background:rgba(255,255,255,.95);border-radius:6px;padding:5px 10px;display:inline-flex;align-items:center;gap:.75rem;box-shadow:0 1px 8px rgba(0,0,0,.22)">
+            <svg width="28" height="37" viewBox="0 0 622 823" xmlns="http://www.w3.org/2000/svg">
+              <path d="M620 288 620 644 516 644 516 347.939Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M311.668 230.654 568.369 378.86 516.4 468.87 207.731 290.662Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M570.025 552.78 621.994 642.79 312.577 821.43 260.609 731.42Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M104.385 582.97 363.34 732.48 311.372 822.49 1.955 643.85 3.463 641.24Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M2 535 2 179 106 179 106 475.06Z" fill="#5F9D9C" fill-rule="evenodd"/>
+              <path d="M310.624 592.39 53.923 444.18 105.892 354.17 414.561 532.38Z" fill="#5F9D9C" fill-rule="evenodd"/>
+              <path d="M52.267 270.263 0.299 180.251 309.715 1.609 361.684 91.621Z" fill="#5F9D9C" fill-rule="evenodd"/>
+              <path d="M517.908 240.075 258.952 90.567 310.921 0.555 620.337 179.197 618.83 181.807Z" fill="#5F9D9C" fill-rule="evenodd"/>
+            </svg>
+            <div style="display:flex;flex-direction:column;line-height:1.15">
+              <span style="font-size:.95rem;font-weight:700;color:#333">Sanova Umwelttechnik</span>
+              <span style="font-size:.64rem;color:#888;text-transform:uppercase;letter-spacing:.07em">Schadstoffsanierung</span>
+            </div>
+          </div>
+        </div>
+        <p>Ihr zertifizierter Partner für professionelle Gebäudeschadstoffsanierung.</p>
+      </div>
+      <div class="fcol"><h4>Navigation</h4><ul>
+        <li><a href="index.html">Start</a></li>
+        <li><a href="leistungen.html">Leistungen</a></li>
+        <li><a href="info.html">Info &amp; Schadstoffe</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="karriere.html">Karriere</a></li>
+      </ul></div>
+      <div class="fcol"><h4>Rechtliches</h4><ul>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+        <li><a href="cookies.html">Cookie-Richtlinie</a></li>
+      </ul></div>
+    </div>
+    <div class="fbot">
+      <p>© 2025 Sanova Umwelttechnik · Yannick Döll · Reinheim</p>
+      <div class="fbot-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="cookies.html">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<div id="cb" class="cb">
+  <p class="cb-text">Wir verwenden externe Dienste: <strong>Google Fonts</strong> und <strong>Formspree</strong>. Mit „Akzeptieren" stimmen Sie der Datenverarbeitung gemäß unserer <a href="datenschutz.html">Datenschutzerklärung</a> zu.</p>
+  <div class="cb-btns">
+    <button class="cb-btn-ok" onclick="acceptCookies()">Akzeptieren</button>
+    <button class="cb-btn-no" onclick="rejectCookies()">Nur notwendige</button>
+  </div>
+</div>
+<script src="shared.js"></script>
+</body>
+</html>

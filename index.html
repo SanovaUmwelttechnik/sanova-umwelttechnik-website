@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sanova Umwelttechnik – Schadstoffsanierung | Vorschau</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<title>Sanova Umwelttechnik – Professionelle Schadstoffsanierung</title>
+<meta name="description" content="Zertifizierte Gebäudeschadstoffsanierung: Asbest (TRGS 519), KMF (TRGS 521), PCB und PAK. Bundesweit tätig. Kostenlose Beratung anfordern.">
+<link rel="stylesheet" href="styles.css">
 <style>
 :root {
   --g900: #1c2020;
@@ -645,7 +644,7 @@ footer{background:#1a2424;padding:4rem 0 2rem;color:rgba(255,255,255,.62)}
         </div>
         <p>Ihr zertifizierter Partner für professionelle Gebäudeschadstoffsanierung. Sicherheit, Qualität und gesetzeskonforme Lösungen aus einer Hand.</p>
       </div>
-      <div class="fcol"><h4>Navigation</h4><ul><li><a href="index.html">Start</a></li><li><a href="leistungen.html">Leistungen</a></li><li><a href="info.html">Info &amp; Schadstoffe</a></li><li><a href="kontakt.html">Kontakt</a></li></ul></div>
+      <div class="fcol"><h4>Navigation</h4><ul><li><a href="index.html">Start</a></li><li><a href="leistungen.html">Leistungen</a></li><li><a href="info.html">Info &amp; Schadstoffe</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="karriere.html">Karriere</a></li></ul></div>
       <div class="fcol"><h4>Rechtliches</h4><ul><li><a href="impressum.html">Impressum</a></li><li><a href="datenschutz.html">Datenschutz</a></li><li><a href="cookies.html">Cookie-Richtlinie</a></li></ul></div>
     </div>
     <div class="fbot">
@@ -655,21 +654,13 @@ footer{background:#1a2424;padding:4rem 0 2rem;color:rgba(255,255,255,.62)}
   </div>
 </footer>
 
-<script>
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => nav.classList.toggle('sc', window.scrollY > 60));
-
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const sibs = [...e.target.parentElement.querySelectorAll('.rv:not(.vis)')];
-      const i = sibs.indexOf(e.target);
-      setTimeout(() => e.target.classList.add('vis'), i * 80);
-      obs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.rv').forEach(el => obs.observe(el));
-</script>
+<div id="cb" class="cb">
+  <p class="cb-text">Wir verwenden externe Dienste: <strong>Google Fonts</strong> (Schriften) und <strong>Formspree</strong> (Kontaktformular). Durch Klick auf „Akzeptieren" stimmen Sie der Datenverarbeitung gemäß unserer <a href="datenschutz.html">Datenschutzerklärung</a> zu.</p>
+  <div class="cb-btns">
+    <button class="cb-btn-ok" onclick="acceptCookies()">Akzeptieren</button>
+    <button class="cb-btn-no" onclick="rejectCookies()">Nur notwendige</button>
+  </div>
+</div>
+<script src="shared.js"></script>
 </body>
 </html>

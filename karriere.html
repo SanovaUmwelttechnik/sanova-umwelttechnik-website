@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karriere – Sanova Umwelttechnik</title>
+<meta name="description" content="Werde Teil von Sanova Umwelttechnik. Offene Stellen, Initiativbewerbung und Subunternehmer-Partnerschaften in der Schadstoffsanierung.">
+<link rel="stylesheet" href="styles.css">
+<style>
+.karr-page{padding:6rem 0 7rem;background:var(--bg)}
+.karr-page + .karr-section{background:#fff}
+
+/* Job card */
+.job-card{background:#fff;border-radius:var(--rl);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow);transition:all var(--tr)}
+.job-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.job-head{background:linear-gradient(135deg,var(--g800) 0%,var(--g700) 100%);padding:2rem 2.5rem;position:relative;overflow:hidden}
+.job-head::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:32px 32px}
+.job-head-inner{position:relative;z-index:1}
+.job-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(95,157,156,.22);border:1px solid rgba(95,157,156,.4);color:var(--teal-xl);padding:.3rem .9rem;border-radius:2rem;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem}
+.job-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal-xl);flex-shrink:0}
+.job-head h2{font-size:1.55rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:.5rem}
+.job-head p{font-size:.9rem;color:rgba(255,255,255,.6)}
+.job-meta{display:flex;gap:1.5rem;margin-top:1.25rem;flex-wrap:wrap}
+.job-meta-item{display:flex;align-items:center;gap:.4rem;font-size:.82rem;color:rgba(255,255,255,.7)}
+.job-meta-item svg{width:14px;height:14px;fill:var(--teal-xl)}
+.job-body{padding:2rem 2.5rem}
+.job-body h3{font-size:1rem;font-weight:700;color:var(--g600);margin:1.5rem 0 .75rem}
+.job-body h3:first-child{margin-top:0}
+.job-body ul{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
+.job-body ul li{display:flex;align-items:flex-start;gap:.6rem;font-size:.9rem;color:var(--tl);line-height:1.6}
+.job-body ul li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0;margin-top:.05rem}
+.job-actions{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap}
+
+/* Initiative card */
+.init-section{background:var(--bg-alt);padding:6rem 0}
+.init-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3.5rem}
+.init-card{background:#fff;border-radius:var(--rl);padding:2rem 2.25rem;box-shadow:var(--shadow);border:1px solid var(--border);transition:all var(--tr)}
+.init-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.init-ico{width:52px;height:52px;background:var(--teal-dim);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--teal);margin-bottom:1.25rem}
+.init-card h3{font-size:1.08rem;font-weight:700;color:var(--g600);margin-bottom:.6rem}
+.init-card p{font-size:.875rem;color:var(--tl);line-height:1.7;margin-bottom:1.25rem}
+
+/* Subunternehmer */
+.sub-section{background:linear-gradient(150deg,#1c2020 0%,#363d3a 55%,#2c3030 100%);padding:6rem 0;position:relative;overflow:hidden}
+.sub-section::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:40px 40px;opacity:.4}
+.sub-inner{position:relative;z-index:2}
+.sub-inner .stag{color:var(--teal-xl)}
+.sub-inner .stitle{color:#fff}
+.sub-inner .sdesc{color:rgba(255,255,255,.6);max-width:580px}
+.sub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.sub-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:var(--rl);padding:1.75rem;backdrop-filter:blur(4px);transition:all var(--tr)}
+.sub-card:hover{background:rgba(255,255,255,.11);border-color:rgba(95,157,156,.3)}
+.sub-ico{width:46px;height:46px;background:rgba(95,157,156,.18);border-radius:var(--r);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:var(--teal-xl)}
+.sub-card h3{font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem}
+.sub-card p{font-size:.855rem;color:rgba(255,255,255,.5);line-height:1.65}
+.sub-cta{margin-top:3rem;text-align:center}
+
+/* Form section */
+.appl-section{background:var(--bg);padding:6rem 0}
+.appl-layout{display:grid;grid-template-columns:1fr 1.35fr;gap:5rem;align-items:start}
+.appl-info h3{font-size:1.3rem;font-weight:700;color:var(--g600);margin-bottom:1rem}
+.appl-info p{font-size:.93rem;color:var(--tl);line-height:1.75;margin-bottom:1.5rem}
+.appl-steps{display:flex;flex-direction:column;gap:1.25rem;margin-top:2rem}
+.appl-step{display:flex;gap:1rem;align-items:flex-start}
+.appl-num{width:34px;height:34px;min-width:34px;border-radius:50%;background:var(--teal-dim);border:1.5px solid rgba(95,157,156,.4);display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;color:var(--teal)}
+.appl-step div p{font-size:.875rem;color:var(--tl);margin:0}
+.appl-step div strong{color:var(--g600);font-size:.9rem}
+
+@media(max-width:900px){
+  .init-grid,.sub-grid,.appl-layout{grid-template-columns:1fr}
+  .job-meta{flex-direction:column;gap:.6rem}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="n-logo">
+    <div class="n-logo-bg">
+      <svg class="n-logo-sym" width="28" height="37" viewBox="0 0 622 823" xmlns="http://www.w3.org/2000/svg">
+        <path class="lp-g" d="M620 288 620 644 516 644 516 347.939Z" fill-rule="evenodd"/>
+        <path class="lp-g" d="M311.668 230.654 568.369 378.86 516.4 468.87 207.731 290.662Z" fill-rule="evenodd"/>
+        <path class="lp-g" d="M570.025 552.78 621.994 642.79 312.577 821.43 260.609 731.42Z" fill-rule="evenodd"/>
+        <path class="lp-g" d="M104.385 582.97 363.34 732.48 311.372 822.49 1.955 643.85 3.463 641.24Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M2 535 2 179 106 179 106 475.06Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M310.624 592.39 53.923 444.18 105.892 354.17 414.561 532.38Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M52.267 270.263 0.299 180.251 309.715 1.609 361.684 91.621Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M517.908 240.075 258.952 90.567 310.921 0.555 620.337 179.197 618.83 181.807Z" fill-rule="evenodd"/>
+      </svg>
+    </div>
+    <div class="n-logo-name">
+      <span class="n-l1">Sanova Umwelttechnik</span>
+      <span class="n-l2">Schadstoffsanierung</span>
+    </div>
+  </a>
+  <ul class="nlinks">
+    <li><a href="index.html">Start</a></li>
+    <li><a href="leistungen.html">Leistungen</a></li>
+    <li><a href="info.html">Info</a></li>
+    <li><a href="kontakt.html" class="n-cta">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="ctr ph-inner">
+    <div class="stag">Karriere bei Sanova</div>
+    <h1>Werde Teil<br>unseres Teams</h1>
+    <p>Wir suchen engagierte Fachkräfte und zuverlässige Partnerunternehmen für die Gebäudeschadstoffsanierung.</p>
+  </div>
+</div>
+
+<!-- STELLENANGEBOT -->
+<section class="karr-page">
+  <div class="ctr">
+    <div class="sh rv" style="text-align:center;max-width:640px;margin:0 auto 3.5rem">
+      <div class="stag">Offene Stelle</div>
+      <h2 class="stitle">Aktuelle Stellenausschreibung</h2>
+    </div>
+
+    <div class="job-card rv">
+      <div class="job-head">
+        <div class="job-head-inner">
+          <div class="job-badge">Vollzeit · Sofort</div>
+          <h2>Schadstofffachkraft / Sanierungsarbeiter (m/w/d)</h2>
+          <p>Gebäudeschadstoffsanierung – Asbest, KMF, PCB, PAK</p>
+          <div class="job-meta">
+            <div class="job-meta-item">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Reinheim &amp; bundesweite Einsätze
+            </div>
+            <div class="job-meta-item">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+              Vollzeit (40 Std./Woche)
+            </div>
+            <div class="job-meta-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+              Ab sofort
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="job-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+          <div>
+            <h3>Ihre Aufgaben</h3>
+            <ul>
+              <li>Durchführung von Schadstoffsanierungen (Asbest, KMF, PCB, PAK) nach TRGS 519/521</li>
+              <li>Fachgerechter Rückbau und Demontage schadstoffhaltiger Bauteile</li>
+              <li>Einrichten und Betreuen von Sicherheitsschleusensystemen</li>
+              <li>Ordnungsgemäße Verpackung, Kennzeichnung und Entsorgung von Gefahrstoffen</li>
+              <li>Dokumentation der durchgeführten Maßnahmen</li>
+              <li>Einhaltung aller gesetzlichen Sicherheits- und Umweltvorschriften</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Ihr Profil</h3>
+            <ul>
+              <li>Abgeschlossene Ausbildung im Bau- oder Handwerksbereich von Vorteil</li>
+              <li>Sachkundenachweis nach TRGS 519 (Asbest) und/oder TRGS 521 (KMF) wünschenswert – Schulung durch uns möglich</li>
+              <li>Körperliche Belastbarkeit und Zuverlässigkeit</li>
+              <li>Teamfähigkeit und selbstständige Arbeitsweise</li>
+              <li>Führerschein Klasse B erforderlich</li>
+              <li>Bereitschaft zu überregionalen Einsätzen</li>
+            </ul>
+
+            <h3>Wir bieten</h3>
+            <ul>
+              <li>Übertarifliche Vergütung + Auslöse bei Auswärtseinsätzen</li>
+              <li>Schulungen und Zertifizierungen (TRGS 519/521) auf unsere Kosten</li>
+              <li>Modernes Werkzeug und Schutzausrüstung</li>
+              <li>Abwechslungsreiche Projekte in ganz Deutschland</li>
+              <li>Familiäres Team mit flachen Hierarchien</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job-actions">
+          <a href="#bewerbung" class="btn-p">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            Jetzt bewerben
+          </a>
+          <a href="tel:+4915209328685" class="btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            Direkt anrufen
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INITIATIVBEWERBUNG -->
+<section class="init-section">
+  <div class="ctr">
+    <div class="sh rv" style="text-align:center;max-width:600px;margin:0 auto 0">
+      <div class="stag">Offen für Talente</div>
+      <h2 class="stitle">Initiativbewerbung willkommen</h2>
+      <p class="sdesc" style="margin:1rem auto 0">Auch wenn keine passende Stelle ausgeschrieben ist – wir freuen uns immer über motivierte Fachkräfte, die den Schritt in die Schadstoffsanierung wagen möchten.</p>
+    </div>
+    <div class="init-grid">
+      <div class="init-card rv">
+        <div class="init-ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Quereinsteiger willkommen</h3>
+        <p>Kein Vorwissen in der Sanierungsbranche? Kein Problem. Wir schulen Sie in TRGS 519 und 521 – auf unsere Kosten. Handwerkliches Geschick und Lernbereitschaft reichen für den Einstieg.</p>
+        <a href="#bewerbung" class="btn-outline">Initiativbewerbung senden</a>
+      </div>
+      <div class="init-card rv">
+        <div class="init-ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <h3>Erfahrene Fachkräfte</h3>
+        <p>Sie haben Erfahrung in der Schadstoffsanierung und suchen einen neuen Arbeitgeber? Sprechen Sie uns direkt an – wir schaffen attraktive Konditionen für bewährte Fachkräfte.</p>
+        <a href="tel:+4915209328685" class="btn-outline">Direkt anrufen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBUNTERNEHMER -->
+<section class="sub-section">
+  <div class="ctr sub-inner">
+    <div class="sh rv">
+      <div class="stag">Partnerschaft</div>
+      <h2 class="stitle">Subunternehmer & Partner gesucht</h2>
+      <p class="sdesc">Wir arbeiten bundesweit und suchen zuverlässige Subunternehmer sowie Partnerunternehmen für die Abwicklung von Sanierungsprojekten.</p>
+    </div>
+    <div class="sub-grid">
+      <div class="sub-card rv">
+        <div class="sub-ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Zertifizierte Fachbetriebe</h3>
+        <p>Wir suchen Fachbetriebe mit gültigem Sachkundenachweis nach TRGS 519 und/oder 521 für die Übernahme von Sanierungsmaßnahmen.</p>
+      </div>
+      <div class="sub-card rv">
+        <div class="sub-ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3>Abbruch & Rückbau</h3>
+        <p>Partnerunternehmen für Abbrucharbeiten, Kernbohrungen, selektiven Rückbau und Entsorgungslogistik im Rahmen unserer Projekte.</p>
+      </div>
+      <div class="sub-card rv">
+        <div class="sub-ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h3>Probenehmer & Gutachter</h3>
+        <p>Freiberufliche Sachverständige und akkreditierte Labore für Probenahmen, Schadstoffgutachten und Freimessungen.</p>
+      </div>
+    </div>
+    <div class="sub-cta rv">
+      <a href="mailto:info@sanova-umwelttechnik.de" class="btn-p" style="background:#fff;color:var(--g700);border-color:#fff">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Partnerschaftsanfrage senden
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BEWERBUNGSFORMULAR -->
+<section class="appl-section" id="bewerbung">
+  <div class="ctr">
+    <div class="appl-layout">
+      <div class="appl-info rv">
+        <div class="stag">Bewerbung</div>
+        <h3>So einfach bewerben</h3>
+        <p>Kein komplizierter Bewerbungsprozess. Schicken Sie uns einfach eine kurze Nachricht mit Ihren Infos – wir melden uns zeitnah.</p>
+        <div class="appl-steps">
+          <div class="appl-step">
+            <div class="appl-num">1</div>
+            <div><strong>Formular ausfüllen</strong><p>Name, Erfahrung und kurze Vorstellung genügen</p></div>
+          </div>
+          <div class="appl-step">
+            <div class="appl-num">2</div>
+            <div><strong>Persönliches Gespräch</strong><p>Wir melden uns innerhalb von 48 Stunden</p></div>
+          </div>
+          <div class="appl-step">
+            <div class="appl-num">3</div>
+            <div><strong>Schnellstart möglich</strong><p>Flexible Einarbeitung, Schulungen inklusive</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="cform rv">
+        <h3 style="font-size:1.15rem;font-weight:700;color:var(--g600);margin-bottom:1.5rem">Bewerbung / Anfrage</h3>
+        <form action="https://formspree.io/f/xredarey" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="Karriere-Anfrage – Sanova Umwelttechnik">
+          <div class="frow">
+            <div class="fg"><label>Vorname *</label><input type="text" name="vorname" required placeholder="Max"></div>
+            <div class="fg"><label>Nachname *</label><input type="text" name="nachname" required placeholder="Mustermann"></div>
+          </div>
+          <div class="frow">
+            <div class="fg"><label>E-Mail *</label><input type="email" name="email" required placeholder="max@beispiel.de"></div>
+            <div class="fg"><label>Telefon</label><input type="tel" name="telefon" placeholder="+49 ..."></div>
+          </div>
+          <div class="fg"><label>Ich bewerbe mich als</label>
+            <select name="bewerbungsart">
+              <option value="">Bitte auswählen...</option>
+              <option>Schadstofffachkraft / Sanierungsarbeiter</option>
+              <option>Initiativbewerbung (Quereinsteiger)</option>
+              <option>Subunternehmer / Partnerunternehmen</option>
+              <option>Probenehmer / Gutachter</option>
+              <option>Sonstiges</option>
+            </select>
+          </div>
+          <div class="fg"><label>Erfahrung / Qualifikationen</label><input type="text" name="qualifikation" placeholder="z.B. TRGS 519, Maurergeselle, 5 Jahre Bau..."></div>
+          <div class="fg"><label>Ihre Nachricht *</label><textarea name="nachricht" required placeholder="Kurze Vorstellung, Verfügbarkeit, Gehaltsvorstellung oder Fragen..."></textarea></div>
+          <button class="fsub" type="submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            Bewerbung absenden
+          </button>
+          <p style="font-size:.76rem;color:var(--tl);margin-top:.85rem;line-height:1.6">* Pflichtfelder · Rückmeldung innerhalb von 48 Stunden · Daten werden vertraulich behandelt.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ctr">
+    <div class="ftop">
+      <div class="fbrand">
+        <div class="fbrand-logo">
+          <div style="background:rgba(255,255,255,.95);border-radius:6px;padding:5px 10px;display:inline-flex;align-items:center;gap:.75rem;box-shadow:0 1px 8px rgba(0,0,0,.22)">
+            <svg width="28" height="37" viewBox="0 0 622 823" xmlns="http://www.w3.org/2000/svg">
+              <path d="M620 288 620 644 516 644 516 347.939Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M311.668 230.654 568.369 378.86 516.4 468.87 207.731 290.662Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M570.025 552.78 621.994 642.79 312.577 821.43 260.609 731.42Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M104.385 582.97 363.34 732.48 311.372 822.49 1.955 643.85 3.463 641.24Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M2 535 2 179 106 179 106 475.06Z" fill="#5F9D9C" fill-rule="evenodd"/>
+              <path d="M310.624 592.39 53.923 444.18 105.892 354.17 414.561 532.38Z" fill="#5F9D9C" fill-rule="evenodd"/>
+              <path d="M52.267 270.263 0.299 180.251 309.715 1.609 361.684 91.621Z" fill="#5F9D9C" fill-rule="evenodd"/>
+              <path d="M517.908 240.075 258.952 90.567 310.921 0.555 620.337 179.197 618.83 181.807Z" fill="#5F9D9C" fill-rule="evenodd"/>
+            </svg>
+            <div style="display:flex;flex-direction:column;line-height:1.15">
+              <span style="font-size:.95rem;font-weight:700;color:#333">Sanova Umwelttechnik</span>
+              <span style="font-size:.64rem;color:#888;text-transform:uppercase;letter-spacing:.07em">Schadstoffsanierung</span>
+            </div>
+          </div>
+        </div>
+        <p>Ihr zertifizierter Partner für professionelle Gebäudeschadstoffsanierung.</p>
+      </div>
+      <div class="fcol"><h4>Navigation</h4><ul>
+        <li><a href="index.html">Start</a></li>
+        <li><a href="leistungen.html">Leistungen</a></li>
+        <li><a href="info.html">Info &amp; Schadstoffe</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="karriere.html">Karriere</a></li>
+      </ul></div>
+      <div class="fcol"><h4>Rechtliches</h4><ul>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+        <li><a href="cookies.html">Cookie-Richtlinie</a></li>
+      </ul></div>
+    </div>
+    <div class="fbot">
+      <p>© 2025 Sanova Umwelttechnik · Yannick Döll · Reinheim</p>
+      <div class="fbot-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="cookies.html">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<div id="cb" class="cb">
+  <p class="cb-text">Wir verwenden externe Dienste: <strong>Google Fonts</strong> und <strong>Formspree</strong>. Mit „Akzeptieren" stimmen Sie der Datenverarbeitung gemäß unserer <a href="datenschutz.html">Datenschutzerklärung</a> zu.</p>
+  <div class="cb-btns">
+    <button class="cb-btn-ok" onclick="acceptCookies()">Akzeptieren</button>
+    <button class="cb-btn-no" onclick="rejectCookies()">Nur notwendige</button>
+  </div>
+</div>
+<script src="shared.js"></script>
+</body>
+</html>

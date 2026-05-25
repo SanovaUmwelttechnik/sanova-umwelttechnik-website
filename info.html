@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Info &amp; Schadstoffe – Sanova Umwelttechnik</title>
+<meta name="description" content="Alles über Gebäudeschadstoffe: Asbest, KMF, PCB und PAK. Wo sie vorkommen, wie sie erkannt werden und wann eine Sanierung notwendig ist.">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Schadstoff-Karten */
+.info-page{padding:5.5rem 0 7rem;background:var(--bg)}
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-bottom:5rem}
+.icard{background:#fff;border-radius:var(--rl);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow);transition:all var(--tr)}
+.icard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.icard-head{padding:2rem 2rem 1.5rem;border-bottom:1px solid var(--border);display:flex;gap:1.25rem;align-items:flex-start}
+.icard-ico{width:52px;height:52px;min-width:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.icard-ico.asbest{background:rgba(95,157,156,.12);color:var(--teal)}
+.icard-ico.kmf{background:rgba(102,102,102,.1);color:var(--g600)}
+.icard-ico.pcb{background:rgba(212,160,23,.1);color:#b8860b}
+.icard-ico.pak{background:rgba(180,100,80,.1);color:#9b4f3f}
+.icard-head-text .badge{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);background:rgba(95,157,156,.1);padding:.2rem .6rem;border-radius:2rem;margin-bottom:.4rem}
+.icard-head-text h2{font-size:1.18rem;font-weight:700;color:var(--g600);line-height:1.2;margin-bottom:.2rem}
+.icard-head-text span{font-size:.8rem;color:var(--tl)}
+.icard-body{padding:1.5rem 2rem}
+.icard-body p{font-size:.875rem;color:var(--tl);line-height:1.75;margin-bottom:1rem}
+.icard-rows{display:flex;flex-direction:column;gap:.5rem}
+.icard-row{display:flex;gap:.75rem;align-items:flex-start;font-size:.84rem;color:var(--tl);line-height:1.55}
+.icard-row-label{font-weight:700;color:var(--g600);min-width:100px;flex-shrink:0}
+.risk-bar{display:flex;align-items:center;gap:.5rem;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border)}
+.risk-label{font-size:.75rem;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.08em;min-width:70px}
+.risk-dots{display:flex;gap:.3rem}
+.risk-dot{width:10px;height:10px;border-radius:50%;background:var(--border)}
+.risk-dot.on{background:var(--teal)}
+.risk-dot.on.warn{background:#e0a020}
+.risk-dot.on.high{background:#c44}
+
+/* REM section */
+.rem-section{background:#fff;padding:5.5rem 0}
+.remgrid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
+.remcard{background:var(--bg);border-radius:var(--rl);overflow:hidden;border:1px solid var(--border);transition:all var(--tr)}
+.remcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--teal)}
+.remcard-img{width:100%;height:185px;object-fit:cover;object-position:center;display:block;background:#111}
+.remcard-body{padding:1.25rem 1.375rem 1.5rem}
+.remtag{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);background:rgba(95,157,156,.1);padding:.22rem .65rem;border-radius:2rem;margin-bottom:.65rem}
+.remcard-body h3{font-size:.98rem;font-weight:700;color:var(--g600);margin-bottom:.5rem}
+.remcard-body p{font-size:.845rem;color:var(--tl);line-height:1.65}
+
+/* FAQ */
+.faq-section{background:var(--bg-alt);padding:5.5rem 0}
+.faq-list{display:flex;flex-direction:column;gap:.75rem;max-width:800px;margin:3rem auto 0}
+.faq-item{background:#fff;border-radius:var(--r);border:1px solid var(--border);overflow:hidden;transition:box-shadow var(--tr)}
+.faq-item:hover{box-shadow:var(--shadow)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;cursor:pointer;gap:1rem;user-select:none}
+.faq-q span{font-size:.95rem;font-weight:600;color:var(--g600);line-height:1.4}
+.faq-ico{width:24px;height:24px;min-width:24px;border-radius:50%;background:var(--teal-dim);display:flex;align-items:center;justify-content:center;color:var(--teal);transition:transform var(--tr);font-size:1rem;font-weight:700;line-height:1}
+.faq-item.open .faq-ico{transform:rotate(45deg);background:var(--teal);color:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a p{padding:.25rem 1.5rem 1.5rem;font-size:.9rem;color:var(--tl);line-height:1.75}
+
+/* CTA band */
+.cta-band{background:linear-gradient(135deg,rgba(95,157,156,.12) 0%,rgba(95,157,156,.05) 100%);border-top:1px solid rgba(95,157,156,.2);border-bottom:1px solid rgba(95,157,156,.2);padding:4rem 0}
+.cta-band-inner{display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap}
+.cta-band-inner h2{font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;color:var(--g600);line-height:1.25;max-width:540px}
+.cta-band-btns{display:flex;gap:1rem;flex-wrap:wrap;flex-shrink:0}
+
+@media(max-width:900px){
+  .info-grid{grid-template-columns:1fr}
+  .remgrid3{grid-template-columns:1fr 1fr}
+  .cta-band-inner{flex-direction:column;text-align:center}
+}
+@media(max-width:600px){.remgrid3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="n-logo">
+    <div class="n-logo-bg">
+      <svg class="n-logo-sym" width="28" height="37" viewBox="0 0 622 823" xmlns="http://www.w3.org/2000/svg">
+        <path class="lp-g" d="M620 288 620 644 516 644 516 347.939Z" fill-rule="evenodd"/>
+        <path class="lp-g" d="M311.668 230.654 568.369 378.86 516.4 468.87 207.731 290.662Z" fill-rule="evenodd"/>
+        <path class="lp-g" d="M570.025 552.78 621.994 642.79 312.577 821.43 260.609 731.42Z" fill-rule="evenodd"/>
+        <path class="lp-g" d="M104.385 582.97 363.34 732.48 311.372 822.49 1.955 643.85 3.463 641.24Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M2 535 2 179 106 179 106 475.06Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M310.624 592.39 53.923 444.18 105.892 354.17 414.561 532.38Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M52.267 270.263 0.299 180.251 309.715 1.609 361.684 91.621Z" fill-rule="evenodd"/>
+        <path class="lp-t" d="M517.908 240.075 258.952 90.567 310.921 0.555 620.337 179.197 618.83 181.807Z" fill-rule="evenodd"/>
+      </svg>
+    </div>
+    <div class="n-logo-name">
+      <span class="n-l1">Sanova Umwelttechnik</span>
+      <span class="n-l2">Schadstoffsanierung</span>
+    </div>
+  </a>
+  <ul class="nlinks">
+    <li><a href="index.html">Start</a></li>
+    <li><a href="leistungen.html">Leistungen</a></li>
+    <li><a href="info.html" class="active">Info</a></li>
+    <li><a href="kontakt.html" class="n-cta">Kontakt</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="ctr ph-inner">
+    <div class="stag">Wissen &amp; Information</div>
+    <h1>Gebäudeschadstoffe<br>verstehen</h1>
+    <p>Was Sie über Asbest, KMF, PCB und PAK wissen müssen – und wann Handlungsbedarf besteht.</p>
+  </div>
+</div>
+
+<!-- SCHADSTOFF-KARTEN -->
+<section class="info-page">
+  <div class="ctr">
+    <div class="sh rv" style="text-align:center;max-width:660px;margin:0 auto 3rem">
+      <div class="stag">Die 4 Hauptschadstoffe</div>
+      <h2 class="stitle">Was in älteren Gebäuden steckt</h2>
+      <p class="sdesc" style="margin:1rem auto 0">In Gebäuden bis ca. 1990 sind häufig gesundheitsgefährdende Schadstoffe verbaut. Die gute Nachricht: Sie müssen nicht sofort handeln – aber Sie sollten informiert sein.</p>
+    </div>
+    <div class="info-grid">
+
+      <!-- ASBEST -->
+      <div class="icard rv">
+        <div class="icard-head">
+          <div class="icard-ico asbest">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+          </div>
+          <div class="icard-head-text">
+            <div class="badge">Verboten seit 1993</div>
+            <h2>Asbest</h2>
+            <span>Asbestose, Mesotheliom, Lungenkrebs</span>
+          </div>
+        </div>
+        <div class="icard-body">
+          <p>Asbest ist ein natürliches Silikatmineral mit faseriger Struktur, das bis 1993 in Deutschland verbaut wurde. Die feinen Fasern sind unsichtbar, inhalierbar und können nach jahrzehntelanger Latenzzeit tödliche Erkrankungen auslösen.</p>
+          <div class="icard-rows">
+            <div class="icard-row"><span class="icard-row-label">Baujahre:</span><span>Bis ca. 1993 (Verbot), Hauptvorkommen 1955–1980</span></div>
+            <div class="icard-row"><span class="icard-row-label">Fundorte:</span><span>Bodenbeläge, Dachplatten, Putze, Kleber, Dichtungen</span></div>
+            <div class="icard-row"><span class="icard-row-label">Norm:</span><span>TRGS 519 – Sachkundenachweis Pflicht</span></div>
+          </div>
+          <div class="risk-bar">
+            <span class="risk-label">Gefahr</span>
+            <div class="risk-dots">
+              <div class="risk-dot on high"></div><div class="risk-dot on high"></div>
+              <div class="risk-dot on high"></div><div class="risk-dot on high"></div><div class="risk-dot on high"></div>
+            </div>
+            <span style="font-size:.76rem;color:#c44;font-weight:600;margin-left:.25rem">Sehr hoch – krebserregend</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- KMF -->
+      <div class="icard rv">
+        <div class="icard-head">
+          <div class="icard-ico kmf">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-8 2l3 5-3-2z"/></svg>
+          </div>
+          <div class="icard-head-text">
+            <div class="badge" style="color:var(--g500);background:rgba(102,102,102,.1)">Neu: unkritisch ab 1996</div>
+            <h2>KMF – Mineralwolle</h2>
+            <span>Biopersistente Fasern, Krebsverdacht</span>
+          </div>
+        </div>
+        <div class="icard-body">
+          <p>Künstliche Mineralfasern (Glaswolle, Steinwolle) der älteren Generation (vor 1996) gelten als biopersistent – sie werden vom Körper nicht abgebaut. Neuere Produkte ab 1996 sind durch chemische Modifikation unbedenklich.</p>
+          <div class="icard-rows">
+            <div class="icard-row"><span class="icard-row-label">Baujahre:</span><span>Ältere KMF: bis 1996 – kritisch; ab 1996 unbedenklich</span></div>
+            <div class="icard-row"><span class="icard-row-label">Fundorte:</span><span>Kellerdecken, Rohrleitungen, Trittschalldämmungen</span></div>
+            <div class="icard-row"><span class="icard-row-label">Norm:</span><span>TRGS 521 – Schutzmaßnahmen Klasse 1–3</span></div>
+          </div>
+          <div class="risk-bar">
+            <span class="risk-label">Gefahr</span>
+            <div class="risk-dots">
+              <div class="risk-dot on warn"></div><div class="risk-dot on warn"></div>
+              <div class="risk-dot on warn"></div><div class="risk-dot"></div><div class="risk-dot"></div>
+            </div>
+            <span style="font-size:.76rem;color:#e0a020;font-weight:600;margin-left:.25rem">Mittel – bei alten Produkten</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PCB -->
+      <div class="icard rv">
+        <div class="icard-head">
+          <div class="icard-ico pcb">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.07 4.93A10 10 0 1 0 4.93 19.07 10 10 0 0 0 19.07 4.93zM12 17l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+          </div>
+          <div class="icard-head-text">
+            <div class="badge" style="color:#b8860b;background:rgba(212,160,23,.12)">Verboten seit 1989</div>
+            <h2>PCB</h2>
+            <span>Polychlorierte Biphenyle – persistent &amp; toxisch</span>
+          </div>
+        </div>
+        <div class="icard-body">
+          <p>PCB ist eine Gruppe von 209 chlorierten Verbindungen, die in den 1950–1980er Jahren weit verbreitet als Weichmacher, Flammschutzmittel und Bindemittel eingesetzt wurden. Sie reichern sich in der Nahrungskette an und sind stark hormonstörend.</p>
+          <div class="icard-rows">
+            <div class="icard-row"><span class="icard-row-label">Baujahre:</span><span>Hauptvorkommen 1960–1980, besonders Schulen &amp; Behörden</span></div>
+            <div class="icard-row"><span class="icard-row-label">Fundorte:</span><span>Elastische Fugen, Farbbeschichtungen, Kondensatoren</span></div>
+            <div class="icard-row"><span class="icard-row-label">Norm:</span><span>PCBAbfallV – Sonderabfall-Entsorgung</span></div>
+          </div>
+          <div class="risk-bar">
+            <span class="risk-label">Gefahr</span>
+            <div class="risk-dots">
+              <div class="risk-dot on high"></div><div class="risk-dot on high"></div>
+              <div class="risk-dot on high"></div><div class="risk-dot on high"></div><div class="risk-dot"></div>
+            </div>
+            <span style="font-size:.76rem;color:#c44;font-weight:600;margin-left:.25rem">Hoch – hormonstörend</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAK -->
+      <div class="icard rv">
+        <div class="icard-head">
+          <div class="icard-ico pak">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2.05V4.05C17.39 4.59 20.5 8.58 19.96 12.97C19.5 16.61 16.64 19.5 13 19.93V21.93C18.5 21.38 22.5 16.5 21.95 11C21.5 6.25 17.73 2.5 13 2.05M11 2.06C9.05 2.25 7.19 3 5.67 4.26L7.1 5.74C8.22 4.84 9.57 4.26 11 4.06V2.06M4.26 5.67C3 7.19 2.25 9.04 2.05 11H4.05C4.24 9.58 4.8 8.23 5.69 7.1L4.26 5.67M12 9A3 3 0 0 0 9 12A3 3 0 0 0 12 15A3 3 0 0 0 15 12A3 3 0 0 0 12 9Z"/></svg>
+          </div>
+          <div class="icard-head-text">
+            <div class="badge" style="color:#9b4f3f;background:rgba(180,100,80,.1)">In Teerprodukten</div>
+            <h2>PAK</h2>
+            <span>Polyzyklische Aromatische Kohlenwasserstoffe</span>
+          </div>
+        </div>
+        <div class="icard-body">
+          <p>PAK sind eine Gruppe von über 100 chemischen Verbindungen, die bei unvollständiger Verbrennung entstehen und in Teer- und Bitumenprodukten vorkommen. Viele PAK sind mutagen und krebserregend. Besonders bei Rückbauarbeiten besteht Hautkontakt-Risiko.</p>
+          <div class="icard-rows">
+            <div class="icard-row"><span class="icard-row-label">Baujahre:</span><span>Hauptvorkommen vor 1975, in manchen Bereichen bis 1990</span></div>
+            <div class="icard-row"><span class="icard-row-label">Fundorte:</span><span>Teerkleber unter Parkett &amp; PVC, Gussasphalt, Dachpappe</span></div>
+            <div class="icard-row"><span class="icard-row-label">Norm:</span><span>DGUV-Regel 101-004 – Hautschutz Pflicht</span></div>
+          </div>
+          <div class="risk-bar">
+            <span class="risk-label">Gefahr</span>
+            <div class="risk-dots">
+              <div class="risk-dot on high"></div><div class="risk-dot on high"></div>
+              <div class="risk-dot on high"></div><div class="risk-dot on warn"></div><div class="risk-dot"></div>
+            </div>
+            <span style="font-size:.76rem;color:#c44;font-weight:600;margin-left:.25rem">Hoch – krebserregend (K2)</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REM MIKROSKOP -->
+<section class="rem-section">
+  <div class="ctr">
+    <div class="sh rv" style="text-align:center;max-width:660px;margin:0 auto 0">
+      <div class="stag">Erkennungsmerkmale</div>
+      <h2 class="stitle">Was das Auge nicht sieht</h2>
+      <p class="sdesc" style="margin:1rem auto 0">Asbest- und KMF-Fasern sind mit bloßem Auge unsichtbar – erst unter dem Rasterelektronenmikroskop wird ihre gefährliche Struktur sichtbar.</p>
+    </div>
+    <div class="remgrid3">
+      <div class="remcard rv">
+        <img class="remcard-img" src="Bilder/REM/chrysotil-2_5f9d9c.png" alt="Chrysotil-Asbest unter dem Elektronenmikroskop">
+        <div class="remcard-body">
+          <span class="remtag">Weißasbest</span>
+          <h3>Chrysotil-Asbest</h3>
+          <p>Die häufigste Asbestart. Lockig-spiralförmige Fasern, die in Bodenbelägen, Klebstoffen und Dachplatten vorkommen. Gut in der Lunge löslich – trotzdem krebserregend.</p>
+        </div>
+      </div>
+      <div class="remcard rv">
+        <img class="remcard-img" src="Bilder/REM/amphibol-1_5f9d9c.png" alt="Amphibol-Asbest unter dem Elektronenmikroskop">
+        <div class="remcard-body">
+          <span class="remtag">Blau- / Braunasbest</span>
+          <h3>Amphibol-Asbest</h3>
+          <p>Besonders gefährlich durch nadelförmige, spröde Fasern mit sehr langer Verweilzeit im Gewebe. Hauptsächlich in Spritzputzen und Brandschutzmaterialien.</p>
+        </div>
+      </div>
+      <div class="remcard rv">
+        <img class="remcard-img" src="Bilder/KMF-2.png" alt="Künstliche Mineralfasern unter dem Elektronenmikroskop" style="object-fit:contain;background:#111;padding:.5rem">
+        <div class="remcard-body">
+          <span class="remtag">KMF / Mineralwolle</span>
+          <h3>Alte Mineralfasern</h3>
+          <p>Im Vergleich zu Asbest deutlich dicker und glatt. Vor 1996 produzierte Generationen sind biopersistent und können sich im Lungengewebe einlagern.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="ctr">
+    <div class="sh rv" style="text-align:center;max-width:600px;margin:0 auto 0">
+      <div class="stag">Häufige Fragen</div>
+      <h2 class="stitle">Was Eigentümer wissen möchten</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item rv">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Muss ich als Eigentümer sofort handeln, wenn Schadstoffe vermutet werden?</span>
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a"><p>Nicht zwingend sofort – aber Sie sollten Klarheit schaffen. Gebundene Schadstoffe (z.B. in intakten Bodenbelägen) stellen oft kein akutes Risiko dar. Erst bei Umbau, Renovierung oder Beschädigung wird eine Sanierung notwendig. Wir beraten Sie kostenlos, ob und wann Handlungsbedarf besteht.</p></div>
+      </div>
+
+      <div class="faq-item rv">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Wie erkenne ich, ob mein Gebäude betroffen ist?</span>
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a"><p>Schadstoffe sind optisch nicht erkennbar. Bei Gebäuden bis Baujahr 1990 besteht grundsätzlicher Verdacht. Ein Schadstoffgutachten durch einen Sachkundigen schafft Gewissheit. Materialproben werden im Labor analysiert und geben exakte Auskunft über Art und Konzentration der Schadstoffe.</p></div>
+      </div>
+
+      <div class="faq-item rv">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Wer darf Asbest entfernen?</span>
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a"><p>Die Entfernung von Asbest ist in Deutschland streng reguliert. Fachbetriebe und deren Mitarbeiter müssen einen Sachkundenachweis nach TRGS 519 besitzen. Laien dürfen keine Asbestsanierungsarbeiten durchführen. Sanova Umwelttechnik ist nach TRGS 519 und 521 zertifiziert.</p></div>
+      </div>
+
+      <div class="faq-item rv">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Muss die Behörde informiert werden?</span>
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a"><p>Ja, bei Asbestsanierungen über bestimmten Mengenmengen ist die zuständige Behörde (Gewerbeaufsicht, Arbeitsschutzbehörde) vorab zu informieren. Wir übernehmen die Meldung und Koordination mit Behörden vollständig für Sie.</p></div>
+      </div>
+
+      <div class="faq-item rv">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Was passiert mit dem Schadstoffabfall?</span>
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a"><p>Asbestabfall, PCB-haltige Materialien und alte KMF werden als gefährliche Abfälle eingestuft und müssen in zugelassenen Deponien oder Verbrennungsanlagen entsorgt werden. Wir kümmern uns um die gesamte Entsorgungskette und stellen alle erforderlichen Entsorgungsnachweise aus.</p></div>
+      </div>
+
+      <div class="faq-item rv">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Wie lange dauert eine typische Sanierungsmaßnahme?</span>
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a"><p>Das hängt stark von der Größe und Art der Maßnahme ab. Kleine Asbestentfernungen (z.B. einzelne Bodenbeläge in einem Raum) dauern oft 1–2 Tage. Größere Maßnahmen in Gewerbegebäuden können mehrere Wochen in Anspruch nehmen. Wir erstellen nach der Vor-Ort-Begehung eine realistische Zeitplanung.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+  <div class="ctr">
+    <div class="cta-band-inner">
+      <div>
+        <h2>Unsicher, ob Ihr Gebäude betroffen ist?</h2>
+        <p>Wir kommen kostenlos vorbei und schauen gemeinsam mit Ihnen – unverbindlich und diskret.</p>
+      </div>
+      <div class="cta-band-btns">
+        <a href="kontakt.html" class="btn-p">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Kostenlose Beratung
+        </a>
+        <a href="leistungen.html" class="btn-outline">Alle Leistungen</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ctr">
+    <div class="ftop">
+      <div class="fbrand">
+        <div class="fbrand-logo">
+          <div style="background:rgba(255,255,255,.95);border-radius:6px;padding:5px 10px;display:inline-flex;align-items:center;gap:.75rem;box-shadow:0 1px 8px rgba(0,0,0,.22)">
+            <svg width="28" height="37" viewBox="0 0 622 823" xmlns="http://www.w3.org/2000/svg">
+              <path d="M620 288 620 644 516 644 516 347.939Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M311.668 230.654 568.369 378.86 516.4 468.87 207.731 290.662Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M570.025 552.78 621.994 642.79 312.577 821.43 260.609 731.42Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M104.385 582.97 363.34 732.48 311.372 822.49 1.955 643.85 3.463 641.24Z" fill="#666666" fill-rule="evenodd"/>
+              <path d="M2 535 2 179 106 179 106 475.06Z" fill="#5F9D9C" fill-rule="evenodd"/>
+              <path d="M310.624 592.39 53.923 444.18 105.892 354.17 414.561 532.38Z" fill="#5F9D9C" fill-rule="evenodd"/>
+              <path d="M52.267 270.263 0.299 180.251 309.715 1.609 361.684 91.621Z" fill="#5F9D9C" fill-rule="evenodd"/>
+              <path d="M517.908 240.075 258.952 90.567 310.921 0.555 620.337 179.197 618.83 181.807Z" fill="#5F9D9C" fill-rule="evenodd"/>
+            </svg>
+            <div style="display:flex;flex-direction:column;line-height:1.15">
+              <span style="font-size:.95rem;font-weight:700;color:#333">Sanova Umwelttechnik</span>
+              <span style="font-size:.64rem;color:#888;text-transform:uppercase;letter-spacing:.07em">Schadstoffsanierung</span>
+            </div>
+          </div>
+        </div>
+        <p>Ihr zertifizierter Partner für professionelle Gebäudeschadstoffsanierung.</p>
+      </div>
+      <div class="fcol"><h4>Navigation</h4><ul>
+        <li><a href="index.html">Start</a></li>
+        <li><a href="leistungen.html">Leistungen</a></li>
+        <li><a href="info.html">Info &amp; Schadstoffe</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="karriere.html">Karriere</a></li>
+      </ul></div>
+      <div class="fcol"><h4>Rechtliches</h4><ul>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+        <li><a href="cookies.html">Cookie-Richtlinie</a></li>
+      </ul></div>
+    </div>
+    <div class="fbot">
+      <p>© 2025 Sanova Umwelttechnik · Yannick Döll · Reinheim</p>
+      <div class="fbot-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="cookies.html">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<div id="cb" class="cb">
+  <p class="cb-text">Wir verwenden externe Dienste: <strong>Google Fonts</strong> und <strong>Formspree</strong>. Mit „Akzeptieren" stimmen Sie der Datenverarbeitung gemäß unserer <a href="datenschutz.html">Datenschutzerklärung</a> zu.</p>
+  <div class="cb-btns">
+    <button class="cb-btn-ok" onclick="acceptCookies()">Akzeptieren</button>
+    <button class="cb-btn-no" onclick="rejectCookies()">Nur notwendige</button>
+  </div>
+</div>
+<script src="shared.js"></script>
+</body>
+</html>
