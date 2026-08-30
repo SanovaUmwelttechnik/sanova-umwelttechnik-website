@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Intranet – Sanova Umwelttechnik</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+body{background:var(--bg)}
+.intra{max-width:760px;margin:0 auto;padding:5rem 1.5rem 6rem}
+.intra h1{font-size:1.7rem;font-weight:700;color:var(--g600);margin-bottom:.5rem}
+.intra .sub{color:var(--tl);font-size:.92rem;margin-bottom:2.5rem}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--rl);box-shadow:var(--shadow);padding:2rem;margin-bottom:2rem}
+.card h2{font-size:1.05rem;font-weight:700;color:var(--g600);margin-bottom:1.25rem}
+.fg{margin-bottom:1rem}
+.fg label{display:block;font-size:.82rem;font-weight:600;color:var(--g600);margin-bottom:.35rem}
+.fg input,.fg textarea{width:100%;border:1px solid var(--border);border-radius:var(--r);padding:.6rem .8rem;font:inherit;font-size:.9rem;color:var(--text);background:#fff}
+.fg textarea{min-height:5.5rem;resize:vertical}
+.fg small{display:block;margin-top:.3rem;color:var(--tl);font-size:.76rem}
+.frow2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--teal);color:#fff;border:none;border-radius:var(--r);padding:.7rem 1.4rem;font-weight:600;font-size:.9rem;cursor:pointer}
+.btn:hover{background:var(--teal-l)}
+.btn.outline{background:transparent;color:var(--teal);border:1.5px solid var(--teal)}
+.btn.danger{background:#b3453f}
+.btn.danger:hover{background:#c65b54}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.joblist{display:flex;flex-direction:column;gap:.75rem}
+.jobrow{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border);border-radius:var(--r);padding:.85rem 1.1rem}
+.jobrow strong{font-size:.9rem;color:var(--g600)}
+.jobrow span{display:block;font-size:.78rem;color:var(--tl)}
+.jobrow-actions{display:flex;gap:.5rem}
+.msg{font-size:.85rem;border-radius:var(--r);padding:.7rem 1rem;margin-bottom:1.25rem}
+.msg.err{background:#fdeceb;color:#a13a34}
+.msg.ok{background:#e9f5f0;color:#2c6e52}
+[hidden]{display:none!important}
+.hint{font-size:.78rem;color:var(--tl);line-height:1.6}
+</style>
+</head>
+<body>
+<div class="intra">
+  <h1>Intranet</h1>
+  <p class="sub">Interner Bereich zur Verwaltung der Stellenanzeigen · Sanova Umwelttechnik</p>
+
+  <!-- STEP 1: PASSWORT -->
+  <div class="card" id="gate">
+    <h2>Anmeldung</h2>
+    <div id="gate-msg"></div>
+    <div class="fg"><label>Passwort</label><input type="password" id="pw" autocomplete="off"></div>
+    <button class="btn" onclick="checkPw()">Anmelden</button>
+  </div>
+
+  <!-- STEP 2: GITHUB TOKEN -->
+  <div class="card" id="tokenCard" hidden>
+    <h2>Mit GitHub verbinden</h2>
+    <p class="hint" style="margin-bottom:1rem">Zum Speichern von Änderungen wird ein persönlicher GitHub-Token mit Schreibrechten auf dieses Repository benötigt (Settings → Developer settings → Personal access tokens → Fine-grained, Berechtigung „Contents: Read and write" auf das Repo <code>sanova-umwelttechnik-website</code>). Der Token wird ausschließlich lokal in deinem Browser gespeichert und nie in den Code übernommen.</p>
+    <div id="token-msg"></div>
+    <div class="fg"><label>GitHub Personal Access Token</label><input type="password" id="ghtoken" autocomplete="off" placeholder="ghp_..."></div>
+    <button class="btn" onclick="connectGithub()">Verbinden</button>
+  </div>
+
+  <!-- STEP 3: VERWALTUNG -->
+  <div id="admin" hidden>
+    <div class="card">
+      <h2>Bestehende Stellenanzeigen</h2>
+      <div id="joblist" class="joblist"><p class="hint">Lade…</p></div>
+    </div>
+
+    <div class="card">
+      <h2 id="formTitle">Neue Stellenanzeige</h2>
+      <div id="form-msg"></div>
+      <input type="hidden" id="editId">
+      <div class="fg"><label>Titel *</label><input type="text" id="f-title" placeholder="z.B. Schadstofffachkraft / Sanierungsarbeiter (m/w/d)"></div>
+      <div class="fg"><label>Untertitel</label><input type="text" id="f-subtitle" placeholder="z.B. Gebäudeschadstoffsanierung – Asbest, KMF, PCB, PAK"></div>
+      <div class="frow2">
+        <div class="fg"><label>Badge</label><input type="text" id="f-badge" placeholder="z.B. Vollzeit · Sofort"></div>
+        <div class="fg"><label>Start</label><input type="text" id="f-start" placeholder="z.B. Ab sofort"></div>
+      </div>
+      <div class="frow2">
+        <div class="fg"><label>Einsatzort</label><input type="text" id="f-location" placeholder="z.B. Reinheim & bundesweite Einsätze"></div>
+        <div class="fg"><label>Arbeitszeit</label><input type="text" id="f-hours" placeholder="z.B. Vollzeit (40 Std./Woche)"></div>
+      </div>
+      <div class="fg"><label>Aufgaben (eine Zeile pro Punkt)</label><textarea id="f-tasks"></textarea></div>
+      <div class="fg"><label>Profil (eine Zeile pro Punkt)</label><textarea id="f-profile"></textarea></div>
+      <div class="fg"><label>Wir bieten (eine Zeile pro Punkt)</label><textarea id="f-benefits"></textarea></div>
+      <button class="btn" id="saveBtn" onclick="saveJob()">Speichern</button>
+      <button class="btn outline" id="cancelBtn" onclick="resetForm()" hidden>Abbrechen</button>
+    </div>
+
+    <button class="btn outline" onclick="logout()">Abmelden</button>
+  </div>
+</div>
+
+<script>
+const PW_HASH = '124a4357d733c3f81a154c8e26c0a17cb726d608244fc1eb3f3c59b179640134';
+const OWNER = 'SanovaUmwelttechnik';
+const REPO = 'sanova-umwelttechnik-website';
+const BRANCH = 'master';
+const FILE_PATH = 'jobs.json';
+
+async function sha256(text){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+async function checkPw(){
+  const pw = document.getElementById('pw').value;
+  const hash = await sha256(pw);
+  if(hash === PW_HASH){
+    sessionStorage.setItem('sanova_intranet_ok','1');
+    document.getElementById('gate').hidden = true;
+    afterLogin();
+  } else {
+    document.getElementById('gate-msg').innerHTML = '<div class="msg err">Falsches Passwort.</div>';
+  }
+}
+
+function afterLogin(){
+  const token = localStorage.getItem('sanova_gh_token');
+  if(token){
+    document.getElementById('tokenCard').hidden = true;
+    document.getElementById('admin').hidden = false;
+    loadJobs();
+  } else {
+    document.getElementById('tokenCard').hidden = false;
+  }
+}
+
+function connectGithub(){
+  const t = document.getElementById('ghtoken').value.trim();
+  if(!t){ document.getElementById('token-msg').innerHTML = '<div class="msg err">Bitte Token eingeben.</div>'; return; }
+  localStorage.setItem('sanova_gh_token', t);
+  document.getElementById('tokenCard').hidden = true;
+  document.getElementById('admin').hidden = false;
+  loadJobs();
+}
+
+function logout(){
+  sessionStorage.removeItem('sanova_intranet_ok');
+  localStorage.removeItem('sanova_gh_token');
+  location.reload();
+}
+
+function ghHeaders(){
+  return {
+    'Authorization': 'Bearer ' + localStorage.getItem('sanova_gh_token'),
+    'Accept': 'application/vnd.github+json'
+  };
+}
+
+function b64EncodeUnicode(str){
+  return btoa(unescape(encodeURIComponent(str)));
+}
+function b64DecodeUnicode(str){
+  return decodeURIComponent(escape(atob(str)));
+}
+
+let currentJobs = [];
+let currentSha = null;
+
+async function loadJobs(){
+  const list = document.getElementById('joblist');
+  list.innerHTML = '<p class="hint">Lade…</p>';
+  try{
+    const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`, { headers: ghHeaders() });
+    if(!res.ok){
+      if(res.status === 401){ throw new Error('Token ungültig oder abgelaufen.'); }
+      if(res.status === 404){ currentJobs = []; currentSha = null; renderJobList(); return; }
+      throw new Error('GitHub-Fehler: ' + res.status);
+    }
+    const data = await res.json();
+    currentSha = data.sha;
+    currentJobs = JSON.parse(b64DecodeUnicode(data.content));
+    renderJobList();
+  } catch(e){
+    list.innerHTML = `<div class="msg err">${e.message}</div>`;
+  }
+}
+
+function renderJobList(){
+  const list = document.getElementById('joblist');
+  if(!currentJobs.length){
+    list.innerHTML = '<p class="hint">Keine Stellenanzeigen vorhanden.</p>';
+    return;
+  }
+  list.innerHTML = currentJobs.map(j => `
+    <div class="jobrow">
+      <div><strong>${escapeHtml(j.title)}</strong><span>${escapeHtml(j.subtitle||'')}</span></div>
+      <div class="jobrow-actions">
+        <button class="btn outline" onclick="editJob('${j.id}')">Bearbeiten</button>
+        <button class="btn danger" onclick="deleteJob('${j.id}')">Löschen</button>
+      </div>
+    </div>`).join('');
+}
+
+function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+function slugify(s){
+  return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') || 'stelle-' + Date.now();
+}
+
+function linesToArr(text){
+  return text.split('\n').map(s=>s.trim()).filter(Boolean);
+}
+
+function editJob(id){
+  const j = currentJobs.find(x=>x.id===id);
+  if(!j) return;
+  document.getElementById('editId').value = j.id;
+  document.getElementById('f-title').value = j.title||'';
+  document.getElementById('f-subtitle').value = j.subtitle||'';
+  document.getElementById('f-badge').value = j.badge||'';
+  document.getElementById('f-start').value = j.start||'';
+  document.getElementById('f-location').value = j.location||'';
+  document.getElementById('f-hours').value = j.hours||'';
+  document.getElementById('f-tasks').value = (j.tasks||[]).join('\n');
+  document.getElementById('f-profile').value = (j.profile||[]).join('\n');
+  document.getElementById('f-benefits').value = (j.benefits||[]).join('\n');
+  document.getElementById('formTitle').textContent = 'Stellenanzeige bearbeiten';
+  document.getElementById('cancelBtn').hidden = false;
+  window.scrollTo({top: document.getElementById('formTitle').offsetTop - 20, behavior:'smooth'});
+}
+
+function resetForm(){
+  document.getElementById('editId').value = '';
+  ['f-title','f-subtitle','f-badge','f-start','f-location','f-hours','f-tasks','f-profile','f-benefits']
+    .forEach(id=>document.getElementById(id).value = '');
+  document.getElementById('formTitle').textContent = 'Neue Stellenanzeige';
+  document.getElementById('cancelBtn').hidden = true;
+  document.getElementById('form-msg').innerHTML = '';
+}
+
+async function deleteJob(id){
+  if(!confirm('Diese Stellenanzeige wirklich löschen?')) return;
+  currentJobs = currentJobs.filter(j=>j.id!==id);
+  await persistJobs('Stellenanzeige entfernt (Intranet)');
+}
+
+async function saveJob(){
+  const title = document.getElementById('f-title').value.trim();
+  if(!title){ document.getElementById('form-msg').innerHTML = '<div class="msg err">Titel ist erforderlich.</div>'; return; }
+  const editId = document.getElementById('editId').value;
+  const job = {
+    id: editId || slugify(title),
+    badge: document.getElementById('f-badge').value.trim(),
+    title,
+    subtitle: document.getElementById('f-subtitle').value.trim(),
+    location: document.getElementById('f-location').value.trim(),
+    hours: document.getElementById('f-hours').value.trim(),
+    start: document.getElementById('f-start').value.trim(),
+    tasks: linesToArr(document.getElementById('f-tasks').value),
+    profile: linesToArr(document.getElementById('f-profile').value),
+    benefits: linesToArr(document.getElementById('f-benefits').value)
+  };
+  if(editId){
+    currentJobs = currentJobs.map(j=>j.id===editId ? job : j);
+  } else {
+    currentJobs.push(job);
+  }
+  await persistJobs(editId ? 'Stellenanzeige aktualisiert (Intranet)' : 'Neue Stellenanzeige (Intranet)');
+  resetForm();
+}
+
+async function persistJobs(message){
+  const msgEl = document.getElementById('form-msg');
+  msgEl.innerHTML = '<div class="msg ok">Speichere…</div>';
+  document.getElementById('saveBtn').disabled = true;
+  try{
+    const body = {
+      message,
+      content: b64EncodeUnicode(JSON.stringify(currentJobs, null, 2)),
+      branch: BRANCH
+    };
+    if(currentSha) body.sha = currentSha;
+    const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`, {
+      method: 'PUT',
+      headers: { ...ghHeaders(), 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      throw new Error(err.message || ('GitHub-Fehler: ' + res.status));
+    }
+    const data = await res.json();
+    currentSha = data.content.sha;
+    msgEl.innerHTML = '<div class="msg ok">Gespeichert. Änderung ist in ca. 1 Minute live.</div>';
+    renderJobList();
+  } catch(e){
+    msgEl.innerHTML = `<div class="msg err">Fehler: ${e.message}</div>`;
+  } finally {
+    document.getElementById('saveBtn').disabled = false;
+  }
+}
+
+if(sessionStorage.getItem('sanova_intranet_ok') === '1'){
+  document.getElementById('gate').hidden = true;
+  afterLogin();
+}
+</script>
+</body>
+</html>

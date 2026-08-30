@@ -137,28 +137,38 @@
 <section class="karr-page">
   <div class="ctr">
     <div class="sh rv" style="text-align:center;max-width:640px;margin:0 auto 3.5rem">
-      <div class="stag">Offene Stelle</div>
-      <h2 class="stitle">Aktuelle Stellenausschreibung</h2>
+      <div class="stag">Offene Stellen</div>
+      <h2 class="stitle">Aktuelle Stellenausschreibungen</h2>
     </div>
+    <div id="jobs-container">
+      <p style="text-align:center;color:var(--tl)">Stellenanzeigen werden geladen…</p>
+    </div>
+  </div>
+</section>
 
+<script>
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function jobCardHtml(job){
+  const li=arr=>(arr||[]).map(i=>`<li>${esc(i)}</li>`).join('');
+  return `
     <div class="job-card rv">
       <div class="job-head">
         <div class="job-head-inner">
-          <div class="job-badge">Vollzeit · Sofort</div>
-          <h2>Schadstofffachkraft / Sanierungsarbeiter (m/w/d)</h2>
-          <p>Gebäudeschadstoffsanierung – Asbest, KMF, PCB, PAK</p>
+          <div class="job-badge">${esc(job.badge||'')}</div>
+          <h2>${esc(job.title||'')}</h2>
+          <p>${esc(job.subtitle||'')}</p>
           <div class="job-meta">
             <div class="job-meta-item">
               <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-              Reinheim &amp; bundesweite Einsätze
+              ${esc(job.location||'')}
             </div>
             <div class="job-meta-item">
               <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-              Vollzeit (40 Std./Woche)
+              ${esc(job.hours||'')}
             </div>
             <div class="job-meta-item">
               <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-              Ab sofort
+              ${esc(job.start||'')}
             </div>
           </div>
         </div>
@@ -167,34 +177,13 @@
         <div class="job-cols">
           <div>
             <h3>Ihre Aufgaben</h3>
-            <ul>
-              <li>Durchführung von Schadstoffsanierungen (Asbest, KMF, PCB, PAK) nach TRGS 519/521</li>
-              <li>Fachgerechter Rückbau und Demontage schadstoffhaltiger Bauteile</li>
-              <li>Einrichten und Betreuen von Sicherheitsschleusensystemen</li>
-              <li>Ordnungsgemäße Verpackung, Kennzeichnung und Entsorgung von Gefahrstoffen</li>
-              <li>Dokumentation der durchgeführten Maßnahmen</li>
-              <li>Einhaltung aller gesetzlichen Sicherheits- und Umweltvorschriften</li>
-            </ul>
+            <ul>${li(job.tasks)}</ul>
           </div>
           <div>
             <h3>Ihr Profil</h3>
-            <ul>
-              <li>Abgeschlossene Ausbildung im Bau- oder Handwerksbereich von Vorteil</li>
-              <li>Sachkundenachweis nach TRGS 519 (Asbest) und/oder TRGS 521 (KMF) wünschenswert – Schulung durch uns möglich</li>
-              <li>Körperliche Belastbarkeit und Zuverlässigkeit</li>
-              <li>Teamfähigkeit und selbstständige Arbeitsweise</li>
-              <li>Führerschein Klasse B erforderlich</li>
-              <li>Bereitschaft zu überregionalen Einsätzen</li>
-            </ul>
-
+            <ul>${li(job.profile)}</ul>
             <h3>Wir bieten</h3>
-            <ul>
-              <li>Übertarifliche Vergütung + Auslöse bei Auswärtseinsätzen</li>
-              <li>Schulungen und Zertifizierungen (TRGS 519/521) auf unsere Kosten</li>
-              <li>Modernes Werkzeug und Schutzausrüstung</li>
-              <li>Abwechslungsreiche Projekte in ganz Deutschland</li>
-              <li>Familiäres Team mit flachen Hierarchien</li>
-            </ul>
+            <ul>${li(job.benefits)}</ul>
           </div>
         </div>
         <div class="job-actions">
@@ -208,9 +197,22 @@
           </a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </div>`;
+}
+fetch('jobs.json?_=' + Date.now())
+  .then(r=>r.json())
+  .then(jobs=>{
+    const c=document.getElementById('jobs-container');
+    if(!Array.isArray(jobs)||jobs.length===0){
+      c.innerHTML='<p style="text-align:center;color:var(--tl)">Aktuell sind keine offenen Stellen ausgeschrieben. Initiativbewerbungen sind jederzeit willkommen.</p>';
+      return;
+    }
+    c.innerHTML=jobs.map(jobCardHtml).join('');
+  })
+  .catch(()=>{
+    document.getElementById('jobs-container').innerHTML='<p style="text-align:center;color:var(--tl)">Stellenanzeigen konnten nicht geladen werden.</p>';
+  });
+</script>
 
 <!-- INITIATIVBEWERBUNG -->
 <section class="init-section">
@@ -377,7 +379,7 @@
       </ul></div>
     </div>
     <div class="fbot">
-      <p>© 2025 Sanova Umwelttechnik · Yannick Döll · Reinheim</p>
+      <p>© 2026 Sanova Umwelttechnik · Yannick Döll · Reinheim</p>
       <div class="fbot-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="cookies.html">Cookies</a></div>
     </div>
   </div>
